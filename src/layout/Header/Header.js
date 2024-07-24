@@ -23,6 +23,7 @@ import Search from "../../components/Search/Search";
 import { handleChangePage } from "../../redux-toolkit/paginationSlice";
 import { USER_MENU } from "../../utils/menu";
 import TippyCart from "../../components/TippyCart/TippyCart";
+import { convertSlugUrl } from "@/utils/commonUtils";
 
 const ProductTypesMenu = () => {
   const [productTypes, setProductTypes] = useState([]);
@@ -42,9 +43,10 @@ const ProductTypesMenu = () => {
     getAllProductType();
   }, []);
 
-  const handleChangProductType = (productTypeId) => {
+  const handleChangProductType = (productTypeId, productTypeName) => {
     dispatch(handleChangePage(1));
-    router.push(`/product/${productTypeId}`);
+    router.push(`/product/${convertSlugUrl(productTypeName)}-${productTypeId}.html`);
+    // router.push(`/product/${productTypeId}`);
   };
 
   return (
@@ -54,7 +56,7 @@ const ProductTypesMenu = () => {
           <div
             key={index}
             className="product-type-wrapper"
-            onClick={() => handleChangProductType(item.productTypeId)}
+            onClick={() => handleChangProductType(item.productTypeId, item.productTypeName)}
           >
             <p>{item.productTypeName}</p>
           </div>

@@ -38,10 +38,14 @@ function ProductDetail({ params }) {
 
   const [product, setProduct] = useState({});
 
+  const temp = params?.productId?.split('.html') ?? [];
+  const temp1 = temp[0]?.split('-') ?? [];
+  const productId = temp1[temp1.length - 1];
+
   let getInfoProdut = async () => {
     try {
       dispatch(loadingProduct(true));
-      let res = await handleGetProductService(params.productId);
+      let res = await handleGetProductService(productId);
       if (res && res.errCode === 0) {
         setProduct(res?.data);
         setSizeData(res?.data?.SizeData);
@@ -108,7 +112,7 @@ function ProductDetail({ params }) {
         try {
           let res = await hadnleAddProductToCart({
             userId: userId,
-            productId: params.productId,
+            productId: productId,
             sizeId: sizeSelected,
             quantity: quantity,
             totalPrice:
@@ -288,7 +292,7 @@ function ProductDetail({ params }) {
             }}
           ></div>
         ) : (
-          <DisplayFeedbacks productId={params.productId} />
+          <DisplayFeedbacks productId={productId} />
         )}
       </div>
     </div>

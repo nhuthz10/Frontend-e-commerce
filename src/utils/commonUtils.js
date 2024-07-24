@@ -2,6 +2,8 @@
 import { v4 as uuidv4 } from "uuid";
 import unidecode from "unidecode";
 import { useEffect, useState } from "react";
+import slugify from "slugify";
+
 const CreateCode = (name) => {
   name = unidecode(name.replace(/[^a-zA-Z0-9]/g, ""));
   let result = "";
@@ -23,5 +25,14 @@ export const useDebounce = (value, delay) => {
 
   return debounceValue;
 };
+
+export const convertSlugUrl = (slug) => {
+  if(!slug) return "";
+  slug = slugify(slug, {
+    lower: true, 
+    locale: 'vi'
+  })
+  return slug;
+}
 
 export default CreateCode;
