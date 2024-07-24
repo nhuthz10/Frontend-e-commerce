@@ -43,6 +43,18 @@ function Footer() {
           <p>Chính sách vận chuyển</p>
         </div>
       </div>
+      <div
+        class="zalo-chat-widget"
+        data-oaid="3862560322634134508"
+        data-welcome-message="Rất vui khi được hỗ trợ bạn!"
+        data-autopopup="30"
+        data-width=""
+        data-height=""
+      ></div>
+      <Script
+        strategy="lazyOnload"
+        src="https://sp.zalo.me/plugins/sdk.js"
+      ></Script>
       <Script
         strategy="lazyOnload"
         src="https://embed.tawk.to/6696b87132dca6db2cb0d2a9/1i2uc0ut4"
