@@ -53,3 +53,90 @@
         font-weight: bold;
     }
 }
+
+// E-marketing Suprise 
+// .form-container {
+//     display:table;
+//     max-width:900px;
+//     width:90%;
+//     margin:0 auto;
+//     box-shadow:1px 1px 5px rgba(0,0,0,0.1);
+//   }
+  
+// form {
+//     display:table-cell;
+//     width:400px;
+//     background-color:#ffffff;
+//     padding:40px 60px;
+//     color:#505e6c;
+//   }
+  
+@media (max-width:991px) {
+form {
+      padding:40px;
+    }
+  }
+  
+  
+form .form-control {
+  padding-bottom: 3px;
+    background:#f7f9fc;
+    border:none;
+    border-bottom:1px solid #dfe7f1;
+    border-radius: 6px;
+    box-shadow:none;
+    outline:none;
+    color:inherit;
+    text-indent:6px;
+    height:40px;
+  }
+
+form .form-group {
+    margin-bottom:10px;
+  }
+  
+form .btn-primary {
+    background: var(--primary-color);
+    border:none;
+    color:#ffffff;
+    border-radius:4px;
+    padding:11px;
+    box-shadow:none;
+    margin-top:10px;
+    text-shadow:none;
+    outline:none !important;
+  }
+  
+form .btn-primary:hover, form .btn-primary:active {
+    background:#eb3b60;
+  }
+
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -5px; /* Adjust as needed for spacing */
+}
+
+.col {
+    flex: 1;
+    padding: 5px; /* Adjust as needed for spacing */
+}
+
+/* Adjust form groups to ensure proper alignment and spacing */
+.form-group {
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius: 30px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn-block {
+    width: 100%;
+}
