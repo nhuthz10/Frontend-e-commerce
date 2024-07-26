@@ -15,7 +15,6 @@ import { fetchAllProductCart } from "@/redux-toolkit/cartSlice";
 import Image from "next/image";
 import { logOut } from "@/redux-toolkit/userSlice";
 
-
 const Line = ({ color }) => (
   <hr
     style={{
@@ -145,6 +144,13 @@ function ProductDetail({ params }) {
 
   return (
     <div className="product_detail_container">
+      {/*this code below is use for purpose Microformats SEO */}
+      <div className="h-product">
+        <h6 className="p-name"></h6>
+        <img className="u-photo" alt="" />
+        <p className="p-description"></p>
+      </div>
+
       <div className="img_inf_product">
         {product.image && (
           <Image
@@ -234,7 +240,9 @@ function ProductDetail({ params }) {
           <Line color="var(--gray-color)" />
 
           <div className="product_number">
-            <div className="number"><h5>Số lượng</h5></div>
+            <div className="number">
+              <h5>Số lượng</h5>
+            </div>
 
             <div className="quantity-stock">
               <div className="quantity-btn-wrapper">

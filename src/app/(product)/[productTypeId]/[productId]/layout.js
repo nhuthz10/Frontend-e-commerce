@@ -1,5 +1,6 @@
 import { handleGetProductService } from "@/services/productService";
 import { headers } from "next/headers";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 function truncateString(str, num) {
   if (str.length <= num) {
@@ -7,6 +8,18 @@ function truncateString(str, num) {
   }
   return str.slice(0, num) + "...";
 }
+
+//product response
+var res;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: res?.data?.name,
+  image: res?.data?.image,
+  description: res?.data?.name,
+};
+
 
 export async function generateMetadata({ params, searchParams }, parent) {
   // read route params
@@ -17,10 +30,10 @@ export async function generateMetadata({ params, searchParams }, parent) {
   const headersList = headers();
   const domain = headersList.get("host") || "";
 
-  const header_url = headersList.get('x-url') || "";
+  const header_url = headersList.get("x-url") || "";
 
   // fetch data
-  let res;
+  // let res;
   try {
     res = await handleGetProductService(id);
   } catch (error) {
@@ -40,10 +53,21 @@ export async function generateMetadata({ params, searchParams }, parent) {
           url: res?.data?.image,
         },
       ],
+      type: 'website',
+      locale: 'vn',
     },
   };
 }
 
 export default function ProductTypeLayout({ children }) {
-  return <>{children}</>;
+  return (
+    <>
+      {children}
+      <GoogleAnalytics gaId="G-XYZ" />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+    </>
+  );
 }
