@@ -19,7 +19,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
     alternates: {
         canonical: './',
     },
-    metadataBase: new URL(process.env.VERCEL_URL),
+    metadataBase: new URL(process.env.VERCEL_URL ?? 'http://localhost:3000'),
     openGraph: {
       title: "Trang Chủ - Cửa Hàng Đồ Cầu Lông Chính Hãng",
       description: "The React Framework for the Web",

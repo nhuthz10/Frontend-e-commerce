@@ -19,13 +19,10 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
   const header_url = headersList.get('x-url') || "";
 
-  console.log(header_url);
-
   // fetch data
   let res;
   try {
     res = await handleGetProductService(id);
-    console.log(res.data)
   } catch (error) {
     console.log(error);
   }
