@@ -24,6 +24,7 @@ import {
 } from "../../services/userService";
 import "./Introduce.scss";
 import _ from "lodash";
+import { convertSlugUrl } from "@/utils/commonUtils";
 
 const Introduce = () => {
   const [allData, setAllData] = useState([]);
@@ -145,9 +146,9 @@ const Introduce = () => {
     maximumFractionDigits: 0,
   });
 
-  const handleClickMore = (productTypeId) => {
+  const handleClickMore = (productTypeId, productTypeName) => {
     dispatch(handleChangePage(1));
-    router.push(`product/${productTypeId}`);
+    router.push(`/${convertSlugUrl(productTypeName)}-${productTypeId}`);
   };
 
   const handleClickLike = async (productId, status) => {
@@ -200,7 +201,7 @@ const Introduce = () => {
                   {item.title}
                 </h1>
                 <div
-                  onClick={() => handleClickMore(item.id)}
+                  onClick={() => handleClickMore(item.id, item.title)}
                   className="introduce-badminton-header-more"
                 >
                   Xem tất cả
@@ -213,7 +214,13 @@ const Introduce = () => {
                     return (
                       <Grid item xs={3} className="col-3" key={index}>
                         <Link
-                          href={`/product/${product.productTypeData?.productTypeId}/${product.productId}`}
+                          href={`/${convertSlugUrl(
+                            product.productTypeData?.productTypeName
+                          )}-${
+                            product.productTypeData?.productTypeId
+                          }/${convertSlugUrl(product.name)}-${
+                            product.productId
+                          }`}
                         >
                           <div className="introduce-badminton-item">
                             <div style={{ height: "450px" }}>

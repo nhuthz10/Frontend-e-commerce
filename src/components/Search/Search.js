@@ -20,6 +20,7 @@ import { useRouter } from "next/navigation";
 import { handleChangSearchText } from "../../redux-toolkit/searchSlice";
 import { handleChangePage } from "../../redux-toolkit/paginationSlice";
 import { logOut } from "@/redux-toolkit/userSlice";
+import { convertSlugUrl } from "../../utils/commonUtils";
 
 const currencyFormatter = new Intl.NumberFormat("vi-VN", {
   style: "decimal",
@@ -86,7 +87,7 @@ const Search = () => {
     dispatch(handleChangePage(1));
 
     dispatch(handleChangSearchText(popularValue));
-    router.push("/product/search");
+    router.push("/search");
   };
 
   const handleClickSearch = () => {
@@ -97,12 +98,12 @@ const Search = () => {
     if (searchResult.length === 0) return;
 
     setIsShowSearch(false);
-    router.push("/product/search");
+    router.push("/search");
   };
 
   const handleClickMore = () => {
     setIsShowSearch(false);
-    router.push("/product/search");
+    router.push("/search");
   };
 
   return (
@@ -149,7 +150,11 @@ const Search = () => {
                   if (index > 5) return null;
                   return (
                     <Link
-                      href={`/product/${item.productTypeData?.productTypeId}/${item.productId}`}
+                      href={`/${convertSlugUrl(
+                        item.productTypeData?.productTypeName
+                      )}-${
+                        item.productTypeData?.productTypeId
+                      }/${convertSlugUrl(item.name)}-${item.productId}`}
                       key={index}
                       className="searchProduct"
                       onClick={() => {

@@ -18,6 +18,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import { Grid } from "@mui/material";
 import "./page.scss";
+import { convertSlugUrl } from "@/utils/commonUtils";
 
 const currencyFormatter = new Intl.NumberFormat("vi-VN", {
   style: "decimal",
@@ -93,7 +94,11 @@ const SaleOff = () => {
             return (
               <Grid item xs={3} key={index}>
                 <Link
-                  href={`/product/${item.productTypeData.productTypeId}/${item.productId}`}
+                  href={`/${convertSlugUrl(
+                    item.productTypeData?.productTypeName
+                  )}-${item.productTypeData?.productTypeId}/${convertSlugUrl(
+                    item.name
+                  )}-${item.productId}`}
                   className="productWrapper"
                 >
                   <Image

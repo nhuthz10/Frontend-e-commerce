@@ -16,6 +16,17 @@ import "react-toastify/dist/ReactToastify.css";
 import { useSelector } from "react-redux";
 import { handleFilterProduct } from "../../redux-toolkit/productSlice";
 import { logOut } from "@/redux-toolkit/userSlice";
+import { Crib } from "@mui/icons-material";
+
+function convertSlugToId(str) {
+  // Split the string by '-'
+  const words = str.split('-');
+
+  // Get the last word
+  const lastWord = words[words.length - 1];
+
+  return lastWord;
+}
 
 function Breadcrumb() {
   const pathname = usePathname();
@@ -49,14 +60,15 @@ function Breadcrumb() {
   }, []);
 
   useEffect(() => {
-    let getProductName = async () => {
-      let res = await handleGetProductName(crumbs[3]);
+    let getProductName = async (productId) => {
+      let res = await handleGetProductName(productId);
       if (res && res.errCode === 0) {
         setProductName(res?.data?.name);
       }
     };
-    if (crumbs[3]) {
-      getProductName();
+    if (crumbs[2] && crumbs[1] !== 'user') {
+      const id = convertSlugToId(crumbs[2]);
+      getProductName(id);
     }
   }, [crumbs]);
 
@@ -73,11 +85,18 @@ function Breadcrumb() {
       currentLink = "/";
     } else {
       if (crumb === "") return null;
-      if (crumb === crumbs[2]) currentLink = `/${name}/${crumb}`;
-      if (crumb === crumbs[3]) {
-        currentLink = `/${name}/${crumbs[2]}/${crumb}`;
-        crumb = productName ? productName : crumb;
+      if (crumb === crumbs[1]) {
+        currentLink = `/${crumb}`;
+        if(crumb !== 'user' && crumb !== 'sale-off') {
+          crumb = convertSlugToId(crumb);
+        }
       }
+      if (crumb === crumbs[2]) {
+        currentLink = `/${crumbs[1]}/${crumb}`;
+        if(crumb !== 'user') {
+          crumb = productName ? productName : crumb;
+        }
+      };
       if (crumb === "sale-off") crumb = "Sale Off";
       else if (crumb === "search") crumb = `Tìm kiếm [${searchText}]`;
       else if (crumb === "cart") crumb = "Giỏ hàng";

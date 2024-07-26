@@ -15,6 +15,7 @@ import { fetchAllProductCart } from "@/redux-toolkit/cartSlice";
 import Image from "next/image";
 import { logOut } from "@/redux-toolkit/userSlice";
 
+
 const Line = ({ color }) => (
   <hr
     style={{

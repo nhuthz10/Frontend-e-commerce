@@ -1,13 +1,11 @@
 import axios from "../axios";
 
-
 let handleGetProductTypeService = (id) => {
   return axios.get(
     `/api/product-type/get-product-type?id=${id}`,
     { withCredentials: true }
   );
 };
-
 
 let handleGetAllProductTypeService = (limit, page, name, pagination) => {
   return axios.get(

@@ -233,7 +233,7 @@ const Product = ({ params }) => {
                 return (
                   <Grid item xs={4} key={index}>
                     <Link
-                      href={`/product/${convertSlugUrl(
+                      href={`/${convertSlugUrl(
                         item.productTypeData.productTypeName
                       )}-${item.productTypeData.productTypeId}/${convertSlugUrl(
                         item.name

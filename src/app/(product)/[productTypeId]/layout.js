@@ -12,8 +12,6 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
   const header_url = headersList.get('x-url') || "";
 
-  console.log(header_url);
-
   // fetch data
   let res;
   try {
