@@ -56,8 +56,8 @@ const TippyCart = () => {
               className="product-item"
               key={index}
               href={`/${convertSlugUrl(product.productTypeName)}-${
-                product.productTypeId
-              }/${convertSlugUrl(product.name)}-${product.productId}`}
+                product.productTypeId.toLowerCase()
+              }/${convertSlugUrl(product.name)}-${product.productId.toLowerCase()}`}
             >
               <div className="product-wrap-img-name">
                 <Image

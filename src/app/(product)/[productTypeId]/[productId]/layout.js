@@ -23,9 +23,8 @@ const jsonLd = {
 
 export async function generateMetadata({ params, searchParams }, parent) {
   // read route params
-  const temp = params?.productId?.split(".html") ?? [];
-  const temp1 = temp[0]?.split("-") ?? [];
-  const id = temp1[temp1.length - 1];
+  const temp = params?.productId?.split('-') ?? [];
+  const id = temp[temp.length - 1];
 
   const headersList = headers();
   const domain = headersList.get("host") || "";

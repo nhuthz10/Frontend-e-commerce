@@ -235,9 +235,9 @@ const Product = ({ params }) => {
                     <Link
                       href={`/${convertSlugUrl(
                         item.productTypeData.productTypeName
-                      )}-${item.productTypeData.productTypeId}/${convertSlugUrl(
+                      )}-${item.productTypeData.productTypeId.toLowerCase()}/${convertSlugUrl(
                         item.name
-                      )}-${item.productId}`}
+                      )}-${item.productId.toLowerCase()}`}
                       className="product-item"
                     >
                       <Image

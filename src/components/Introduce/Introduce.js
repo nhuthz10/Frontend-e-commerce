@@ -148,7 +148,7 @@ const Introduce = () => {
 
   const handleClickMore = (productTypeId, productTypeName) => {
     dispatch(handleChangePage(1));
-    router.push(`/${convertSlugUrl(productTypeName)}-${productTypeId}`);
+    router.push(`/${convertSlugUrl(productTypeName)}-${productTypeId.toLowerCase()}`);
   };
 
   const handleClickLike = async (productId, status) => {
@@ -217,9 +217,9 @@ const Introduce = () => {
                           href={`/${convertSlugUrl(
                             product.productTypeData?.productTypeName
                           )}-${
-                            product.productTypeData?.productTypeId
+                            product.productTypeData?.productTypeId.toLowerCase()
                           }/${convertSlugUrl(product.name)}-${
-                            product.productId
+                            product.productId.toLowerCase()
                           }`}
                         >
                           <div className="introduce-badminton-item">
