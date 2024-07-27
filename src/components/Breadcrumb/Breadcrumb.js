@@ -109,7 +109,7 @@ function Breadcrumb() {
       if (productType.productTypeId === crumb.toUpperCase()) {
         crumb = productType.productTypeName;
       }
-    });z
+    });
 
     return (
       <div key={index} style={{ display: "flex" }}>
