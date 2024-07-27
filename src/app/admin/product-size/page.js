@@ -8,7 +8,6 @@ import {
   loadingAdmin,
 } from "@/redux-toolkit/adminSlice";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import GridData from "@/components/GridData/GridData";
 import { LIMIT } from "@/utils";
 import { handleChangePage } from "@/redux-toolkit/paginationSlice";

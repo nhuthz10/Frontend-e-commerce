@@ -10,10 +10,10 @@ import { handleGetProductService } from "@/services/productService";
 import DisplayFeedbacks from "@/components/DisplayFeedbacks/DisplayFeedbacks";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { fetchAllProductCart } from "@/redux-toolkit/cartSlice";
 import Image from "next/image";
 import { logOut } from "@/redux-toolkit/userSlice";
+import { initFacebookSDK } from "@/utils/commonUtils";
 
 const Line = ({ color }) => (
   <hr
@@ -25,6 +25,12 @@ const Line = ({ color }) => (
     }}
   />
 );
+
+const currencyFormatter = new Intl.NumberFormat("vi-VN", {
+  style: "decimal",
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0,
+});
 
 function ProductDetail({ params }) {
   const [quantity, setQuantity] = useState(1);
@@ -41,6 +47,10 @@ function ProductDetail({ params }) {
   const temp = params?.productId?.split(".html") ?? [];
   const temp1 = temp[0]?.split("-") ?? [];
   const productId = temp1[temp1.length - 1];
+
+  useEffect(() => {
+    initFacebookSDK();
+  }, []);
 
   let getInfoProdut = async () => {
     try {
@@ -62,12 +72,6 @@ function ProductDetail({ params }) {
   useEffect(() => {
     getInfoProdut();
   }, [params.productId]);
-
-  const currencyFormatter = new Intl.NumberFormat("vi-VN", {
-    style: "decimal",
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  });
 
   const handleClickSize = (sizeId) => {
     let data = sizeData.map((size) => {
@@ -94,6 +98,7 @@ function ProductDetail({ params }) {
       }
     }
   };
+
   const handleIncrement = () => {
     if (!sizeSelected) {
       toast.error("Vui lòng chọn kích cỡ sản phẩm");
@@ -144,13 +149,21 @@ function ProductDetail({ params }) {
 
   return (
     <div className="product_detail_container">
+      {/* <div
+        class="fb-like"
+        data-href="https://developers.facebook.com/docs/plugins/"
+        data-width=""
+        data-layout=""
+        data-action="like"
+        data-size="large"
+        data-share="true"
+      ></div> */}
       {/*this code below is use for purpose Microformats SEO */}
       <div className="h-product">
         <h6 className="p-name"></h6>
         <img className="u-photo" alt="" />
         <p className="p-description"></p>
       </div>
-
       <div className="img_inf_product">
         {product.image && (
           <Image

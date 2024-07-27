@@ -28,7 +28,6 @@ import {
   UpdateDataPost,
 } from "../../redux-toolkit/adminSlice";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import * as XLSX from "xlsx";
 
 const currencyFormatter = new Intl.NumberFormat("vi-VN", {

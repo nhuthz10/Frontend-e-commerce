@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchAllProductRedux,

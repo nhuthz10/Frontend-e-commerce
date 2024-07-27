@@ -12,7 +12,6 @@ import { handleChangePage } from "../../redux-toolkit/paginationSlice";
 import { useDispatch } from "react-redux";
 import "./Breadcrumb.scss";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useSelector } from "react-redux";
 import { handleFilterProduct } from "../../redux-toolkit/productSlice";
 import { logOut } from "@/redux-toolkit/userSlice";
