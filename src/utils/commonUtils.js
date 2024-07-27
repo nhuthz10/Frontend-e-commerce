@@ -2,10 +2,7 @@
 import { v4 as uuidv4 } from "uuid";
 import unidecode from "unidecode";
 import { useEffect, useState } from "react";
-<<<<<<< HEAD
-=======
 import slugify from "slugify";
->>>>>>> main
 
 const CreateCode = (name) => {
   name = unidecode(name.replace(/[^a-zA-Z0-9]/g, ""));
@@ -29,7 +26,6 @@ export const useDebounce = (value, delay) => {
   return debounceValue;
 };
 
-<<<<<<< HEAD
 export const initFacebookSDK = () => {
   if (window.FB) {
     window.FB.XFBML.parse();
@@ -53,15 +49,14 @@ export const initFacebookSDK = () => {
     fjs.parentNode.insertBefore(js, fjs);
   })(document, "script", "facebook-jssdk");
 };
-=======
+
 export const convertSlugUrl = (slug) => {
-  if(!slug) return "";
+  if (!slug) return "";
   slug = slugify(slug, {
-    lower: true, 
-    locale: 'vi'
-  })
+    lower: true,
+    locale: "vi",
+  });
   return slug;
-}
->>>>>>> main
+};
 
 export default CreateCode;
