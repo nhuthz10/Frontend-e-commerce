@@ -27,6 +27,7 @@ import { sortBy } from "@/utils/index";
 import { toast } from "react-toastify";
 import { logOut, updateFavourites } from "@/redux-toolkit/userSlice";
 import { handleChangePage } from "@/redux-toolkit/paginationSlice";
+import { convertSlugUrl } from "@/utils/commonUtils";
 
 const currencyFormatter = new Intl.NumberFormat("vi-VN", {
   style: "decimal",
@@ -50,6 +51,10 @@ const Product = ({ params }) => {
 
   const debounceBrands = useDebounce(checkBrands, 500);
   const debouncePrice = useDebounce(priceValue, 500);
+
+  const temp = params?.productTypeId?.split(".html") ?? [];
+  const temp1 = temp[0]?.split("-") ?? [];
+  const productTypeId = temp1[temp1.length - 1];
 
   useEffect(() => {
     dispatch(handleSortProduct(sortValue.id));
@@ -227,7 +232,11 @@ const Product = ({ params }) => {
                 return (
                   <Grid item xs={4} key={index}>
                     <Link
-                      href={`/product/${item.productTypeData.productTypeId}/${item.productId}`}
+                      href={`/product/${convertSlugUrl(
+                        item.productTypeData.productTypeName
+                      )}-${item.productTypeData.productTypeId}/${convertSlugUrl(
+                        item.name
+                      )}-${item.productId}`}
                       className="product-item"
                     >
                       <Image
@@ -332,10 +341,7 @@ const Product = ({ params }) => {
           <span className="line"></span>
         </div>
         <div style={{ marginTop: 50 }}>
-          <PaginatedItems
-            type={"user-product"}
-            productTypeId={params.productTypeId}
-          />
+          <PaginatedItems type={"user-product"} productTypeId={productTypeId} />
         </div>
       </div>
     </div>

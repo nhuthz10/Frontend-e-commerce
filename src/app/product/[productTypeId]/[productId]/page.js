@@ -44,6 +44,10 @@ function ProductDetail({ params }) {
 
   const [product, setProduct] = useState({});
 
+  const temp = params?.productId?.split(".html") ?? [];
+  const temp1 = temp[0]?.split("-") ?? [];
+  const productId = temp1[temp1.length - 1];
+
   useEffect(() => {
     initFacebookSDK();
   }, []);
@@ -51,7 +55,7 @@ function ProductDetail({ params }) {
   let getInfoProdut = async () => {
     try {
       dispatch(loadingProduct(true));
-      let res = await handleGetProductService(params.productId);
+      let res = await handleGetProductService(productId);
       if (res && res.errCode === 0) {
         setProduct(res?.data);
         setSizeData(res?.data?.SizeData);
@@ -113,7 +117,7 @@ function ProductDetail({ params }) {
         try {
           let res = await hadnleAddProductToCart({
             userId: userId,
-            productId: params.productId,
+            productId: productId,
             sizeId: sizeSelected,
             quantity: quantity,
             totalPrice:
@@ -243,7 +247,9 @@ function ProductDetail({ params }) {
           <Line color="var(--gray-color)" />
 
           <div className="product_number">
-            <div className="number">Số lượng</div>
+            <div className="number">
+              <h5>Số lượng</h5>
+            </div>
 
             <div className="quantity-stock">
               <div className="quantity-btn-wrapper">
@@ -267,8 +273,8 @@ function ProductDetail({ params }) {
           <Line color="var(--gray-color)" />
 
           <button className="cart-btn" onClick={handleClickAddCart}>
-            <i className="fas fa-shopping-cart"></i>
-            Thêm vào giỏ hàng
+            {/* <i className="fas fa-shopping-cart"></i> */}
+            <h3>Thêm vào giỏ hàng</h3>
           </button>
         </div>
       </div>
@@ -280,7 +286,7 @@ function ProductDetail({ params }) {
               className={!checkComponent ? "no-focus" : null}
               onClick={handleCheckComponent}
             >
-              Mô tả sản phẩm
+              <h4>Mô tả sản phẩm</h4>
             </button>
             <Line color={!checkComponent ? "rgba(0, 0, 0, 0.1)" : "black"} />
           </div>
@@ -289,7 +295,7 @@ function ProductDetail({ params }) {
               className={checkComponent ? "no-focus" : null}
               onClick={handleCheckComponent}
             >
-              Phản hồi và Đánh giá
+              <h4>Phản hồi và Đánh giá</h4>
             </button>
             <Line color={checkComponent ? "rgba(0, 0, 0, 0.1)" : "black"} />
           </div>
@@ -302,7 +308,7 @@ function ProductDetail({ params }) {
             }}
           ></div>
         ) : (
-          <DisplayFeedbacks productId={params.productId} />
+          <DisplayFeedbacks productId={productId} />
         )}
       </div>
     </div>
