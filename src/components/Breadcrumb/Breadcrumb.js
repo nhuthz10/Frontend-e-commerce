@@ -105,10 +105,10 @@ function Breadcrumb() {
       else if (crumb === "favourite") crumb = "Sản phẩm yêu thích";
     }
     productTypes.forEach((productType) => {
-      if (productType.productTypeId === crumb) {
+      if (productType.productTypeId.toLowerCase() === crumb) {
         crumb = productType.productTypeName;
       }
-    });
+    });z
 
     return (
       <div key={index} style={{ display: "flex" }}>
