@@ -1,8 +1,29 @@
-import React from "react";
+"use client";
+import { useState } from "react";
 import "./Footer.scss";
 import Script from "next/script";
 
-function Footer() {
+const Footer = () => {
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const res = await fetch("/api/mailchimp", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+      }),
+    });
+    const data = await res.json();
+    console.log(data);
+
+    setEmail("");
+  };
+
   return (
     <>
       <div className="footer">
@@ -42,6 +63,38 @@ function Footer() {
           <p>Chính sách bảo hành</p>
           <p>Chính sách vận chuyển</p>
         </div>
+
+        <div className="col-footer">
+          <h1>ĐĂNG KÝ NHẬN TIN KHUYẾN MÃI</h1>
+          <form method="post" onSubmit={handleSubmit}>
+            <div className="card">
+              <div className="row">
+                <div className="col">
+                  <div className="form-group">
+                    <input
+                      className="form-control"
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="form-group">
+              <button
+                className="btn btn-primary btn-block"
+                type="submit"
+                onSubmit={handleSubmit}
+              >
+                Đăng kí
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
       <div
         className="zalo-chat-widget"
@@ -61,6 +114,6 @@ function Footer() {
       />
     </>
   );
-}
+};
 
 export default Footer;
