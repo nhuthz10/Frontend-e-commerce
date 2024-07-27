@@ -8,7 +8,6 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import {
   handleGetInforUserService,
   handleUpdateUser,

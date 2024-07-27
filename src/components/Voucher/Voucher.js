@@ -5,7 +5,6 @@ import { handleGetAllVoucherUserService } from "../../services/productService";
 import "./Voucher.scss";
 import Image from "next/image";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { logOut } from "@/redux-toolkit/userSlice";
 
 const currencyFormatter = new Intl.NumberFormat("vi-VN", {

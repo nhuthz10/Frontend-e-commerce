@@ -12,7 +12,6 @@ import {
 } from "@/services/userService";
 import { logOut, updateFavourites } from "@/redux-toolkit/userSlice";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
 import { useSelector } from "react-redux";

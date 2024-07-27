@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-regular-svg-icons";
 import { handleChangePasswordProfile } from "../../services/userService";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { logOut } from "@/redux-toolkit/userSlice";
 
 const ModalChangePassword = ({ open, handleCloseModal, setIsOpen }) => {

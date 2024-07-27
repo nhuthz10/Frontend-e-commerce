@@ -14,7 +14,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import { Grid } from "@mui/material";
 import "./page.scss";

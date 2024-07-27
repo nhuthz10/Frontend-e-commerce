@@ -15,7 +15,6 @@ import { searchPopular } from "../../utils";
 import "./Search.scss";
 import { useDebounce } from "../../utils/commonUtils";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import { handleChangSearchText } from "../../redux-toolkit/searchSlice";
 import { handleChangePage } from "../../redux-toolkit/paginationSlice";

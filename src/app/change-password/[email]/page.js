@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { handleChangePasswordService } from "@/services/userService";
 import { useRouter } from "next/navigation";
 import Loading from "@/components/Loading/Loading";

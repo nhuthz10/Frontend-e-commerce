@@ -10,7 +10,6 @@ import { handleGetProductService } from "@/services/productService";
 import DisplayFeedbacks from "@/components/DisplayFeedbacks/DisplayFeedbacks";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { fetchAllProductCart } from "@/redux-toolkit/cartSlice";
 import Image from "next/image";
 import { logOut } from "@/redux-toolkit/userSlice";

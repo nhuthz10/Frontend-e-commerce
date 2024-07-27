@@ -5,7 +5,6 @@ import RattingForm from "@/components/RatingForm/RatingForm";
 import { useSelector } from "react-redux";
 import { handleGetAllProductFeedback } from "@/services/productService";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import "./page.scss";
 import { logOut } from "@/redux-toolkit/userSlice";
 

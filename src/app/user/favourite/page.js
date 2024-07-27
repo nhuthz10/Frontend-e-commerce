@@ -11,7 +11,6 @@ import {
 import { fetchAllProductFavouriteRedux } from "@/redux-toolkit/productSlice";
 import { logOut, updateFavourites } from "@/redux-toolkit/userSlice";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { Grid } from "@mui/material";

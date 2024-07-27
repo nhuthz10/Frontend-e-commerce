@@ -6,7 +6,6 @@ import {
   handleGetAllProductFavorute,
 } from "../services/productService";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { logOut } from "./userSlice";
 
 const initialState = {

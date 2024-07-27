@@ -14,7 +14,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import "./Header.scss";
 import { logOut } from "../../redux-toolkit/userSlice";
 import { handleGetAllProductTypeService } from "../../services/productService";

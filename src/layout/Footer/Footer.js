@@ -44,7 +44,7 @@ function Footer() {
         </div>
       </div>
       <div
-        class="zalo-chat-widget"
+        className="zalo-chat-widget"
         data-oaid="3862560322634134508"
         data-welcome-message="Rất vui khi được hỗ trợ bạn!"
         data-autopopup="30"

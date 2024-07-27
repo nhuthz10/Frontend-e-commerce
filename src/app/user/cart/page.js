@@ -28,7 +28,6 @@ import "./page.scss";
 import Voucher from "@/components/Voucher/Voucher";
 import { useDebounce } from "@/utils/commonUtils";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import {
   fetchAllProductCart,

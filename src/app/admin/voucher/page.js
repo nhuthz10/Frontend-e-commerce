@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { handleDeleteVoucher } from "@/services/productService";
 import { fetchAllVoucherRedux, loadingAdmin } from "@/redux-toolkit/adminSlice";
 import { useDispatch, useSelector } from "react-redux";
