@@ -1,5 +1,6 @@
 "use client";
 import Grid from "@mui/material/Grid";
+import Skeleton from "@mui/joy/Skeleton";
 import { useEffect, useState } from "react";
 import FavoriteBorderTwoToneIcon from "@mui/icons-material/FavoriteBorderTwoTone";
 import FavoriteTwoToneIcon from "@mui/icons-material/FavoriteTwoTone";
@@ -16,7 +17,6 @@ import { useRouter } from "next/navigation";
 import { handleChangePage } from "../../redux-toolkit/paginationSlice";
 import { logOut, updateFavourites } from "../../redux-toolkit/userSlice";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import {
   handleCreateFavourite,
   handleDeleteFavourite,
@@ -26,9 +26,15 @@ import "./Introduce.scss";
 import _ from "lodash";
 import { convertSlugUrl } from "@/utils/commonUtils";
 
+const currencyFormatter = new Intl.NumberFormat("vi-VN", {
+  style: "decimal",
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0,
+});
+
 const Introduce = () => {
   const [allData, setAllData] = useState([]);
-  const [dataProducts, setDataProducs] = useState([]);
+  const [dataProducts, setDataProducts] = useState([]);
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -134,21 +140,17 @@ const Introduce = () => {
         }));
         return newProductType;
       });
-      setDataProducs(newAllData);
+      setDataProducts(newAllData);
     } else {
-      setDataProducs(allData);
+      setDataProducts(allData);
     }
   }, [favourites, allData]);
 
-  const currencyFormatter = new Intl.NumberFormat("vi-VN", {
-    style: "decimal",
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  });
-
   const handleClickMore = (productTypeId, productTypeName) => {
     dispatch(handleChangePage(1));
-    router.push(`/${convertSlugUrl(productTypeName)}-${productTypeId.toLowerCase()}`);
+    router.push(
+      `/${convertSlugUrl(productTypeName)}-${productTypeId.toLowerCase()}`
+    );
   };
 
   const handleClickLike = async (productId, status) => {
@@ -191,8 +193,7 @@ const Introduce = () => {
 
   return (
     <>
-      {dataProducts &&
-        dataProducts.length > 0 &&
+      {dataProducts && dataProducts.length > 0 ? (
         dataProducts.map((item, index) => {
           return (
             <div className="introduce-badminton" key={index}>
@@ -212,15 +213,13 @@ const Introduce = () => {
                   item.data.length > 0 &&
                   item.data.map((product, index) => {
                     return (
-                      <Grid item xs={3} className="col-3" key={index}>
+                      <Grid item xs={3} key={index}>
                         <Link
                           href={`/${convertSlugUrl(
                             product.productTypeData?.productTypeName
-                          )}-${
-                            product.productTypeData?.productTypeId.toLowerCase()
-                          }/${convertSlugUrl(product.name)}-${
-                            product.productId.toLowerCase()
-                          }`}
+                          )}-${product.productTypeData?.productTypeId.toLowerCase()}/${convertSlugUrl(
+                            product.name
+                          )}-${product.productId.toLowerCase()}`}
                         >
                           <div className="introduce-badminton-item">
                             <div style={{ height: "450px" }}>
@@ -333,7 +332,435 @@ const Introduce = () => {
               </Grid>
             </div>
           );
-        })}
+        })
+      ) : (
+        <>
+          <div className="banner-loading-skeleton">
+            <div className="loading-skeleton-title">
+              <Skeleton
+                animation="wave"
+                variant="rectangular"
+                width={200}
+                height={40}
+              />
+              <Skeleton
+                animation="wave"
+                variant="rectangular"
+                width={90}
+                height={40}
+              />
+            </div>
+            <Grid container spacing={5}>
+              <Grid item xs={3}>
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={450}
+                  style={{ borderRadius: 15 }}
+                />
+                <Skeleton
+                  style={{ margin: "10px 0" }}
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={75}
+                />
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={40}
+                />
+              </Grid>
+              <Grid item xs={3}>
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={450}
+                  style={{ borderRadius: 15 }}
+                />
+                <Skeleton
+                  style={{ margin: "10px 0" }}
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={75}
+                />
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={40}
+                />
+              </Grid>
+              <Grid item xs={3}>
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={450}
+                  style={{ borderRadius: 15 }}
+                />
+                <Skeleton
+                  style={{ margin: "10px 0" }}
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={75}
+                />
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={40}
+                />
+              </Grid>
+              <Grid item xs={3}>
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={450}
+                  style={{ borderRadius: 15 }}
+                />
+                <Skeleton
+                  style={{ margin: "10px 0" }}
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={75}
+                />
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={40}
+                />
+              </Grid>
+            </Grid>
+          </div>
+          <div className="banner-loading-skeleton">
+            <div className="loading-skeleton-title">
+              <Skeleton
+                animation="wave"
+                variant="rectangular"
+                width={200}
+                height={40}
+              />
+              <Skeleton
+                animation="wave"
+                variant="rectangular"
+                width={90}
+                height={40}
+              />
+            </div>
+            <Grid container spacing={5}>
+              <Grid item xs={3}>
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={450}
+                  style={{ borderRadius: 15 }}
+                />
+                <Skeleton
+                  style={{ margin: "10px 0" }}
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={75}
+                />
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={40}
+                />
+              </Grid>
+              <Grid item xs={3}>
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={450}
+                  style={{ borderRadius: 15 }}
+                />
+                <Skeleton
+                  style={{ margin: "10px 0" }}
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={75}
+                />
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={40}
+                />
+              </Grid>
+              <Grid item xs={3}>
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={450}
+                  style={{ borderRadius: 15 }}
+                />
+                <Skeleton
+                  style={{ margin: "10px 0" }}
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={75}
+                />
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={40}
+                />
+              </Grid>
+              <Grid item xs={3}>
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={450}
+                  style={{ borderRadius: 15 }}
+                />
+                <Skeleton
+                  style={{ margin: "10px 0" }}
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={75}
+                />
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={40}
+                />
+              </Grid>
+            </Grid>
+          </div>
+          <div className="banner-loading-skeleton">
+            <div className="loading-skeleton-title">
+              <Skeleton
+                animation="wave"
+                variant="rectangular"
+                width={200}
+                height={40}
+              />
+              <Skeleton
+                animation="wave"
+                variant="rectangular"
+                width={90}
+                height={40}
+              />
+            </div>
+            <Grid container spacing={5}>
+              <Grid item xs={3}>
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={450}
+                  style={{ borderRadius: 15 }}
+                />
+                <Skeleton
+                  style={{ margin: "10px 0" }}
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={75}
+                />
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={40}
+                />
+              </Grid>
+              <Grid item xs={3}>
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={450}
+                  style={{ borderRadius: 15 }}
+                />
+                <Skeleton
+                  style={{ margin: "10px 0" }}
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={75}
+                />
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={40}
+                />
+              </Grid>
+              <Grid item xs={3}>
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={450}
+                  style={{ borderRadius: 15 }}
+                />
+                <Skeleton
+                  style={{ margin: "10px 0" }}
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={75}
+                />
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={40}
+                />
+              </Grid>
+              <Grid item xs={3}>
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={450}
+                  style={{ borderRadius: 15 }}
+                />
+                <Skeleton
+                  style={{ margin: "10px 0" }}
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={75}
+                />
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={40}
+                />
+              </Grid>
+            </Grid>
+          </div>
+          <div className="banner-loading-skeleton">
+            <div className="loading-skeleton-title">
+              <Skeleton
+                animation="wave"
+                variant="rectangular"
+                width={200}
+                height={40}
+              />
+              <Skeleton
+                animation="wave"
+                variant="rectangular"
+                width={90}
+                height={40}
+              />
+            </div>
+            <Grid container spacing={5}>
+              <Grid item xs={3}>
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={450}
+                  style={{ borderRadius: 15 }}
+                />
+                <Skeleton
+                  style={{ margin: "10px 0" }}
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={75}
+                />
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={40}
+                />
+              </Grid>
+              <Grid item xs={3}>
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={450}
+                  style={{ borderRadius: 15 }}
+                />
+                <Skeleton
+                  style={{ margin: "10px 0" }}
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={75}
+                />
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={40}
+                />
+              </Grid>
+              <Grid item xs={3}>
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={450}
+                  style={{ borderRadius: 15 }}
+                />
+                <Skeleton
+                  style={{ margin: "10px 0" }}
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={75}
+                />
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={40}
+                />
+              </Grid>
+              <Grid item xs={3}>
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={450}
+                  style={{ borderRadius: 15 }}
+                />
+                <Skeleton
+                  style={{ margin: "10px 0" }}
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={75}
+                />
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width="100%"
+                  height={40}
+                />
+              </Grid>
+            </Grid>
+          </div>
+        </>
+      )}
     </>
   );
 };

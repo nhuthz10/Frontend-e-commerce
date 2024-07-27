@@ -14,7 +14,6 @@ import { handleLoginService } from "../../services/userService";
 import { handleCreatCartService } from "../../services/cartService";
 import { jwtDecode } from "jwt-decode";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import Loading from "../../components/Loading/Loading";

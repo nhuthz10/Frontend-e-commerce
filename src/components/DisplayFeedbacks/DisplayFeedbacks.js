@@ -4,7 +4,6 @@ import Rating from "@mui/material/Rating";
 import "./DisplayFeedbacks.scss";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import dayjs from "dayjs";
 import {
   handleAllFeedbackService,
