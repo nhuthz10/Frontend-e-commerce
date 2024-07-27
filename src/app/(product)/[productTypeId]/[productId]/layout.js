@@ -1,12 +1,12 @@
 import { handleGetProductService } from "@/services/productService";
 import { headers } from "next/headers";
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 function truncateString(str, num) {
-  if (str.length <= num) {
+  if (str?.length <= num) {
     return str;
   }
-  return str.slice(0, num) + "...";
+  return str?.slice(0, num) + "...";
 }
 
 //product response
@@ -20,10 +20,9 @@ const jsonLd = {
   description: res?.data?.name,
 };
 
-
 export async function generateMetadata({ params, searchParams }, parent) {
   // read route params
-  const temp = params?.productId?.split('-') ?? [];
+  const temp = params?.productId?.split("-") ?? [];
   const id = temp[temp.length - 1];
 
   const headersList = headers();
@@ -52,8 +51,8 @@ export async function generateMetadata({ params, searchParams }, parent) {
           url: res?.data?.image,
         },
       ],
-      type: 'website',
-      locale: 'vn',
+      type: "website",
+      locale: "vn",
     },
   };
 }

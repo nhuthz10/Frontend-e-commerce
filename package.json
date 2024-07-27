@@ -30,7 +30,6 @@
     "axios": "^1.6.1",
     "dayjs": "^1.11.10",
     "jwt-decode": "^4.0.0",
-    "localtunnel": "^2.0.2",
     "lodash": "^4.17.21",
     "markdown-it": "^13.0.2",
     "next": "^14.2.5",
