@@ -1,10 +1,10 @@
 export default function robots() {
-    return {
-      rules: {
-        userAgent: '*',
-        allow: '/',
-        disallow: '/private/',
-      },
-      sitemap: 'https://acme.com/sitemap.xml',
-    }
-  }
+  return {
+    rules: {
+      userAgent: "*",
+      allow: "/",
+      disallow: ["/user/", "/admin/"],
+    },
+    sitemap: `${process.env.VERCEL_URL ?? 'localhost:3000'}/sitemap.xml`,
+  };
+}

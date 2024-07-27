@@ -7,7 +7,7 @@ function Footer() {
     <>
       <div className="footer">
         <div className="col-footer">
-          <h1>THÔNG TIN CHUNG</h1>
+          <h2>THÔNG TIN CHUNG</h2>
           <p className="logo-footer">
             <span>BMT</span> là hệ thống cửa hàng cầu lông với hơn 50 chi nhánh
             trên toàn quốc, cung cấp sỉ và lẻ các mặt hàng dụng cụ cầu lông từ
@@ -19,7 +19,7 @@ function Footer() {
         </div>
 
         <div className="col-footer">
-          <h1>THÔNG TIN LIÊN HỆ</h1>
+          <h2>THÔNG TIN LIÊN HỆ</h2>
           <p>
             Hệ thống cửa hàng: <span>58 cửa hàng trên toàn quốc</span>
           </p>
@@ -35,7 +35,7 @@ function Footer() {
         </div>
 
         <div className="policy col-footer">
-          <h1>CHÍNH SÁCH</h1>
+          <h2>CHÍNH SÁCH</h2>
 
           <p>Chính sách đổi trả, hoàn tiền</p>
           <p>Chính sách xử lý, khiếu nại</p>

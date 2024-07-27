@@ -158,6 +158,12 @@ function ProductDetail({ params }) {
         data-size="large"
         data-share="true"
       ></div> */}
+      {/*this code below is use for purpose Microformats SEO */}
+      <div className="h-product">
+        <h6 className="p-name"></h6>
+        <img className="u-photo" alt="" />
+        <p className="p-description"></p>
+      </div>
       <div className="img_inf_product">
         {product.image && (
           <Image

@@ -44,7 +44,7 @@ const ProductTypesMenu = () => {
 
   const handleChangProductType = (productTypeId, productTypeName) => {
     dispatch(handleChangePage(1));
-    router.push(`/product/${convertSlugUrl(productTypeName)}-${productTypeId}.html`);
+    router.push(`/${convertSlugUrl(productTypeName)}-${productTypeId.toLowerCase()}`);
     // router.push(`/product/${productTypeId}`);
   };
 
@@ -86,7 +86,7 @@ function Header() {
 
   let handleClickSaleOff = () => {
     dispatch(handleChangePage(1));
-    router.push("/product/sale-off");
+    router.push("/sale-off");
   };
 
   return (

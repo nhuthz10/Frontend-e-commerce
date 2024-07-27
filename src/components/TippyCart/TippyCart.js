@@ -1,10 +1,12 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import Image from "next/image";
 import { fetchAllProductCart } from "../../redux-toolkit/cartSlice";
 import "./TippyCart.scss";
+import { convertSlugUrl } from "@/utils/commonUtils";
+import { handleGetProductTypeService } from "@/services/productService";
 
 const currencyFormatter = new Intl.NumberFormat("vi-VN", {
   style: "decimal",
@@ -12,16 +14,33 @@ const currencyFormatter = new Intl.NumberFormat("vi-VN", {
   maximumFractionDigits: 0,
 });
 
+
+const getProductTypeName = async (id) => {
+  const res = await handleGetProductTypeService(id);
+  if (res && res?.errCode === 0) {
+    return res?.data?.productTypeName;
+  }
+  console.log(res);
+};
+
 const TippyCart = () => {
   const userId = useSelector((state) => state.user.userInfo?.id);
   const products = useSelector((state) => state?.cart?.allProduct);
   const productCountInCart = useSelector((state) => state.cart?.totalProduct);
+  const [updatedProducts, setUpdatedProducts] = useState([]);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     const getData = async () => {
       await dispatch(fetchAllProductCart({ userId: userId }));
+      const productsWithNames = await Promise.all(
+        products.map(async (product) => {
+          const productTypeName = await getProductTypeName(product.productTypeId);
+          return { ...product, productTypeName: productTypeName };
+        })
+      );
+      setUpdatedProducts(productsWithNames);
     };
     getData();
   }, []);
@@ -29,14 +48,16 @@ const TippyCart = () => {
   return (
     <div className="tippy-cart-container">
       <h2 className="tippy-cart-title">Sản Phẩm Mới Thêm</h2>
-      {products && products.length > 0 ? (
-        products.map((product, index) => {
+      {updatedProducts && updatedProducts.length > 0 ? (
+        updatedProducts.map((product, index) => {
           if (index >= 5) return null;
           return (
             <Link
               className="product-item"
               key={index}
-              href={`/product/${product.productTypeId}/${product.productId}`}
+              href={`/${convertSlugUrl(product.productTypeName)}-${
+                product.productTypeId.toLowerCase()
+              }/${convertSlugUrl(product.name)}-${product.productId.toLowerCase()}`}
             >
               <div className="product-wrap-img-name">
                 <Image
