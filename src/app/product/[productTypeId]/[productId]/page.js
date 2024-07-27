@@ -145,7 +145,7 @@ function ProductDetail({ params }) {
 
   return (
     <div className="product_detail_container">
-      <div
+      {/* <div
         class="fb-like"
         data-href="https://developers.facebook.com/docs/plugins/"
         data-width=""
@@ -153,7 +153,7 @@ function ProductDetail({ params }) {
         data-action="like"
         data-size="large"
         data-share="true"
-      ></div>
+      ></div> */}
       <div className="img_inf_product">
         {product.image && (
           <Image
