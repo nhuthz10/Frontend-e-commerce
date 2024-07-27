@@ -46,6 +46,7 @@
     "redux": "^4.2.1",
     "redux-persist": "^6.0.0",
     "sass": "^1.68.0",
+    "sharethis-reactjs": "^1.6.0",
     "slick-carousel": "^1.8.1",
     "slugify": "1.6.6",
     "styled-components": "^6.1.0",
