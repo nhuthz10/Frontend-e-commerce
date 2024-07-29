@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import Providers from "@/Providers";
 import { headers } from "next/headers";
+import ZaloChat from "@/components/ZaloChat/ZaloChat";
 import "./global.scss";
 
 const inter = Inter({
@@ -17,10 +18,10 @@ export async function generateMetadata({ params, searchParams }, parent) {
     description:
       "Chào mừng đến với cửa hàng đồ cầu lông chính hãng. Chúng tôi cung cấp vợt cầu lông, giày cầu lông, quần áo và phụ kiện chất lượng cao với giá tốt nhất.",
     alternates: {
-        canonical: './',
+      canonical: "./",
     },
     // metadataBase: new URL(process.env.VERCEL_URL ?? 'http://localhost:3000'),
-    metadataBase: 'https://e-commerce-xi-sepia.vercel.app',
+    metadataBase: "https://e-commerce-xi-sepia.vercel.app",
     openGraph: {
       title: "Trang Chủ - Cửa Hàng Đồ Cầu Lông Chính Hãng",
       description: "The React Framework for the Web",
@@ -40,6 +41,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Providers>{children}</Providers>
+        <ZaloChat />
       </body>
     </html>
   );
