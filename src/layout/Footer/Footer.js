@@ -2,14 +2,18 @@
 import { useState } from "react";
 import "./Footer.scss";
 import Script from "next/script";
+import { toast } from "react-toastify";
+import Loading from "@/components/Loading/Loading";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true)
 
-    const res = await fetch("/api/mailchimp", {
+    const res = await fetch("/api/email", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -19,13 +23,23 @@ const Footer = () => {
       }),
     });
     const data = await res.json();
+
     console.log(data);
 
+    if(data?.status == 'subscribed') {
+      toast.success("Đăng ký thành công");
+    } else if(data?.status == 400) {
+      toast.error("Email đã được đăng ký");
+    } else {
+      toast.error("Đăng ký không thành công");
+    }
+
+    setIsLoading(false);
     setEmail("");
   };
 
   return (
-    <>
+    <Loading loading={isLoading}>
       <div className="footer">
         <div className="col-footer">
           <h2>THÔNG TIN CHUNG</h2>
@@ -34,9 +48,6 @@ const Footer = () => {
             trên toàn quốc, cung cấp sỉ và lẻ các mặt hàng dụng cụ cầu lông từ
             phong trào tới chuyên nghiệp
           </p>
-          <i className="fab fa-facebook"></i>
-          <i className="fas fa-globe-americas"></i>
-          <i className="fab fa-tiktok"></i>
         </div>
 
         <div className="col-footer">
@@ -65,23 +76,17 @@ const Footer = () => {
         </div>
 
         <div className="col-footer">
-          <h1>ĐĂNG KÝ NHẬN TIN KHUYẾN MÃI</h1>
+          <h2>ĐĂNG KÝ NHẬN TIN KHUYẾN MÃI</h2>
           <form method="post" onSubmit={handleSubmit}>
-            <div className="card">
-              <div className="row">
-                <div className="col">
-                  <div className="form-group">
-                    <input
-                      className="form-control"
-                      type="email"
-                      name="email"
-                      placeholder="Email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                  </div>
-                </div>
-              </div>
+            <div className="form-group">
+              <input
+                className="form-control"
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
 
             <div className="form-group">
@@ -112,7 +117,7 @@ const Footer = () => {
         strategy="lazyOnload"
         src="https://embed.tawk.to/6696b87132dca6db2cb0d2a9/1i2uc0ut4"
       />
-    </>
+    </Loading>
   );
 };
 

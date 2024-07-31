@@ -16,6 +16,7 @@ import {
   fetchAllVoucherRedux,
   fetchAllOrderAdminRedux,
   fetchAllProductOrderRedux,
+  fetchAllSubscriber,
 } from "../../redux-toolkit/adminSlice";
 import {
   fetchAllProductOfTheProductTypeRedux,
@@ -34,12 +35,14 @@ function PaginatedItems({ type, productTypeId, orderStatus }) {
   const dispatch = useDispatch();
   const [totalPage, setTotalPage] = useState(1);
   const currentPage = useSelector((state) => state.pagination.page);
+  const totalSubscriberPage = useSelector((state) => state.admin.allSubscriber?.totalPage);
   const totalPageUser = useSelector((state) => state.admin.allUser.totalPage);
   const totalPageBrand = useSelector((state) => state.admin.allBrand.totalPage);
   const totalPageProductType = useSelector(
     (state) => state.admin.allProductType.totalPage
   );
   const pageCount = useSelector((state) => state.pagination.page);
+  
   const totalPageSize = useSelector((state) => state.admin.allSize.totalPage);
   const totalProduct = useSelector((state) => state.admin.allProduct.totalPage);
   const totalProductSize = useSelector(
@@ -104,6 +107,13 @@ function PaginatedItems({ type, productTypeId, orderStatus }) {
         dispatch(loadingAdmin(false));
       };
       getAllDataUser();
+    } else if (type === "subscriber") {
+      let getAllDataSubscriber = async () => {
+        dispatch(loadingAdmin(true));
+        await dispatch(fetchAllSubscriber({ limit: LIMIT, page: pageCount }));
+        dispatch(loadingAdmin(false));
+      };
+      getAllDataSubscriber();
     } else if (type === "product-brand") {
       let getAllDataBrand = async () => {
         dispatch(loadingAdmin(true));
@@ -345,6 +355,8 @@ function PaginatedItems({ type, productTypeId, orderStatus }) {
       setTotalPage(totalProductOrder);
     } else if (type === "favourite-product") {
       setTotalPage(totalProductFavourite);
+    } else if (type === "subscriber " || totalSubscriberPage !== null) {
+      setTotalPage(totalSubscriberPage);
     }
   }, [
     totalOrder,
@@ -361,6 +373,7 @@ function PaginatedItems({ type, productTypeId, orderStatus }) {
     totalProductSize,
     totalVoucher,
     totalProductSaleOff,
+    totalSubscriberPage,
     type,
   ]);
 
@@ -390,6 +403,7 @@ function PaginatedItems({ type, productTypeId, orderStatus }) {
           forcePage={currentPage - 1}
           pageRangeDisplayed={3}
           marginPagesDisplayed={2}
+          // pageCount={2}
           pageCount={totalPage ? totalPage : 1}
           previousLabel={
             <button>

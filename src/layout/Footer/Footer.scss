@@ -25,16 +25,10 @@
   span {
     color: #ec3d25;
   }
-
-    i {
-        font-size: 30px;
-        padding: 4px 20px 0px;
-        color: #fff;
-    }
-
     .col-footer {
         width: 50rem;
         margin: 0 5rem;
+        color: #fff;
     }
 
     .policy {
@@ -46,30 +40,6 @@
         }
     }
 }
-
-.logo-footer {
-    span {
-        font-size: 24px;
-        font-weight: bold;
-    }
-}
-
-// E-marketing Suprise 
-// .form-container {
-//     display:table;
-//     max-width:900px;
-//     width:90%;
-//     margin:0 auto;
-//     box-shadow:1px 1px 5px rgba(0,0,0,0.1);
-//   }
-  
-// form {
-//     display:table-cell;
-//     width:400px;
-//     background-color:#ffffff;
-//     padding:40px 60px;
-//     color:#505e6c;
-//   }
   
 @media (max-width:991px) {
 form {
@@ -79,16 +49,15 @@ form {
   
   
 form .form-control {
-  padding-bottom: 3px;
     background:#f7f9fc;
     border:none;
-    border-bottom:1px solid #dfe7f1;
     border-radius: 6px;
     box-shadow:none;
     outline:none;
     color:inherit;
     text-indent:6px;
     height:40px;
+    color: #000;
   }
 
 form .form-group {
@@ -111,23 +80,12 @@ form .btn-primary:hover, form .btn-primary:active {
     background:#eb3b60;
   }
 
-
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-    margin: -5px; /* Adjust as needed for spacing */
-}
-
-.col {
-    flex: 1;
-    padding: 5px; /* Adjust as needed for spacing */
-}
-
 /* Adjust form groups to ensure proper alignment and spacing */
 .form-group {
     width: 100%;
     margin-bottom: 15px;
     border-radius: 30px;
+    font-size: 1.5rem;
 }
 
 .form-control {

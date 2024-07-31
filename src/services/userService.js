@@ -8,6 +8,12 @@ let handleLoginService = (email, password) => {
   );
 };
 
+let handleCheckEmailExisted = async (email) => {
+  return await axios.get(`/api/user/check-email?email=${email}`, {
+    withCredentials: true,
+  });
+};
+
 let handleGetUserAfterLoginService = async (userId) => {
   return await axios.get(`/api/user/get-user-infor?userId=${userId}`, {
     withCredentials: true,
@@ -102,4 +108,5 @@ export {
   handleDeleteFavourite,
   handleGetAllFavourite,
   handleGetUserAfterLoginService,
+  handleCheckEmailExisted
 };

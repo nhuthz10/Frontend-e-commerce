@@ -75,8 +75,6 @@ function Breadcrumb() {
     dispatch(handleFilterProduct({ brandId: [], price: [0, 10000000] }));
   };
 
-  console.log(crumbs);
-
   const displayCrumbs = crumbs.map((crumb, index) => {
     if (crumb === name) return null;
     if (crumb === "" && !checkHome) {

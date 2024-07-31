@@ -9,6 +9,7 @@ import DescriptionIcon from "@mui/icons-material/Description";
 import Person4Icon from "@mui/icons-material/Person4";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import BarChartIcon from "@mui/icons-material/BarChart";
+import EmailIcon from '@mui/icons-material/Email';
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import "./adminSidebar.scss";
 
@@ -90,6 +91,12 @@ const MENU = [
     value: "Báo cáo doanh thu",
     icon: BarChartIcon,
     path: "/admin/revenue",
+  },
+  {
+    id: "subscribed",
+    value: "Email marketing",
+    icon: EmailIcon,
+    path: "/admin/subscribed",
   },
 ];
 
