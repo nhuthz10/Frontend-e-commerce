@@ -59,7 +59,7 @@ const FeedBack = () => {
                 src={product.image}
                 width={150}
                 height={150}
-                alt=""
+                alt="badminton"
                 className="feedback-product-img"
               ></Image>
               <div className="feedback-product-content">

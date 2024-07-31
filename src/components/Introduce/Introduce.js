@@ -228,7 +228,7 @@ const Introduce = () => {
                                 width={0}
                                 height={450}
                                 sizes="100vw"
-                                alt=""
+                                alt="badminton"
                                 className="introduce-badminton-item-img"
                                 style={{
                                   objectFit:
