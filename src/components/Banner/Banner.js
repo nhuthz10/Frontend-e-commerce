@@ -88,7 +88,7 @@ const Banner = () => {
         <div className="banner-item">
           <Image
             src="/images/sl4.jpg"
-            alt=""
+            alt="badminton"
             width={0}
             height={0}
             sizes="100vw"
@@ -98,7 +98,7 @@ const Banner = () => {
         <div className="banner-item">
           <Image
             src="/images/sl6.jpg"
-            alt=""
+            alt="badminton"
             width={0}
             height={0}
             sizes="100vw"
@@ -108,7 +108,7 @@ const Banner = () => {
         <div className="banner-item">
           <Image
             src="/images/sl8.jpg"
-            alt=""
+            alt="badminton"
             width={0}
             height={0}
             sizes="100vw"

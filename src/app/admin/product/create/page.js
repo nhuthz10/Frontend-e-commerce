@@ -253,7 +253,7 @@ const ProductPost = () => {
         >
           <Image
             src={imageValue}
-            alt=""
+            alt="badminton"
             height={250}
             width={200}
             style={{

@@ -1,6 +1,5 @@
 import { handleGetProductService } from "@/services/productService";
 import { headers } from "next/headers";
-import { GoogleAnalytics } from "@next/third-parties/google";
 
 function truncateString(str, num) {
   if (str?.length <= num) {
@@ -61,7 +60,6 @@ export default function ProductTypeLayout({ children }) {
   return (
     <>
       {children}
-      <GoogleAnalytics gaId="G-XYZ" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

@@ -1,55 +1,59 @@
 // Scss footer
 .footer {
-    padding: 30px 40px;
-    // margin: 0;
-    margin-top: 100px;
-    margin-top: 5rem;
-    text-align: center;
-    background-color: #000;
-    display: flex;
-    justify-content: center;
+  padding: 30px 40px;
+  // margin: 0;
+  margin-top: 100px;
+  margin-top: 5rem;
+  text-align: center;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
 
-    h2 {
-        font-size: 20px;
-        font-weight: bold;
-        margin-bottom: 24px;
-        color: #fff;
-    }
+  .h-product {
+    display: none;
+  }
 
-    p {
-        font-size: 15px;
-        margin-bottom: 12px;
-        color: #fff;
-    }
+  h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 24px;
+    color: #fff;
+  }
+
+  p {
+    font-size: 15px;
+    margin-bottom: 12px;
+    color: #fff;
+  }
 
   span {
     color: #ec3d25;
   }
 
-    i {
-        font-size: 30px;
-        padding: 4px 20px 0px;
-        color: #fff;
-    }
+  i {
+    font-size: 30px;
+    padding: 4px 20px 0px;
+    color: #fff;
+  }
 
-    .col-footer {
-        width: 50rem;
-        margin: 0 5rem;
-    }
+  .col-footer {
+    width: 50rem;
+    margin: 0 5rem;
+  }
 
-    .policy {
-        p {
-            &:hover {
-                cursor: pointer;
-                color: #EC3D25;
-            }
-        }
+  .policy {
+    p {
+      &:hover {
+        cursor: pointer;
+        color: #ec3d25;
+      }
     }
+  }
 }
 
 .logo-footer {
-    span {
-        font-size: 24px;
-        font-weight: bold;
-    }
+  span {
+    font-size: 24px;
+    font-weight: bold;
+  }
 }

@@ -2,7 +2,7 @@ import { Inter } from "next/font/google";
 import Providers from "@/Providers";
 import { headers } from "next/headers";
 import ZaloChat from "@/components/ZaloChat/ZaloChat";
-import FaceBookChat from "@/components/FacebookChat/FacebookChat";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./global.scss";
 
 const inter = Inter({
@@ -41,6 +41,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+        <GoogleAnalytics gaId="G-XYZ" />
         <Providers>{children}</Providers>
         <ZaloChat />
       </body>

@@ -44,7 +44,9 @@ const ProductTypesMenu = () => {
 
   const handleChangProductType = (productTypeId, productTypeName) => {
     dispatch(handleChangePage(1));
-    router.push(`/${convertSlugUrl(productTypeName)}-${productTypeId.toLowerCase()}`);
+    router.push(
+      `/${convertSlugUrl(productTypeName)}-${productTypeId.toLowerCase()}`
+    );
     // router.push(`/product/${productTypeId}`);
   };
 
@@ -55,9 +57,11 @@ const ProductTypesMenu = () => {
           <div
             key={index}
             className="product-type-wrapper"
-            onClick={() => handleChangProductType(item.productTypeId, item.productTypeName)}
+            onClick={() =>
+              handleChangProductType(item.productTypeId, item.productTypeName)
+            }
           >
-            <p>{item.productTypeName}</p>
+            <h1>{item.productTypeName}</h1>
           </div>
         );
       })}
