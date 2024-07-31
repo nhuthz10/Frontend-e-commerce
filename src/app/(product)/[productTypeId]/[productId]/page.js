@@ -13,7 +13,6 @@ import { toast } from "react-toastify";
 import { fetchAllProductCart } from "@/redux-toolkit/cartSlice";
 import Image from "next/image";
 import { logOut } from "@/redux-toolkit/userSlice";
-import { initFacebookSDK } from "@/utils/commonUtils";
 import { InlineShareButtons } from "sharethis-reactjs";
 
 const Line = ({ color }) => (
@@ -48,10 +47,6 @@ function ProductDetail({ params }) {
   const temp = params?.productId?.split(".html") ?? [];
   const temp1 = temp[0]?.split("-") ?? [];
   const productId = temp1[temp1.length - 1];
-
-  useEffect(() => {
-    initFacebookSDK();
-  }, []);
 
   let getInfoProdut = async () => {
     try {
@@ -150,15 +145,6 @@ function ProductDetail({ params }) {
 
   return (
     <div className="product_detail_container">
-      {/* <div
-        class="fb-like"
-        data-href="https://developers.facebook.com/docs/plugins/"
-        data-width=""
-        data-layout=""
-        data-action="like"
-        data-size="large"
-        data-share="true"
-      ></div> */}
       {/*this code below is use for purpose Microformats SEO */}
       <div className="h-product">
         <h6 className="p-name"></h6>
