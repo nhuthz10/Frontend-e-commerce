@@ -7,6 +7,7 @@ import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import "./UserLayout.scss";
 import Loading from "../../components/Loading/Loading";
 import { useSelector } from "react-redux";
+import FaceBookChat from "@/components/FacebookChat/FacebookChat";
 const UserLayout = ({ children }) => {
   const pathname = usePathname();
   const isHome = pathname === "/";
@@ -19,6 +20,7 @@ const UserLayout = ({ children }) => {
         {!isHome ? <Breadcrumb /> : null}
         <div className="layout-content">{children}</div>
         <Footer />
+        <FaceBookChat />
       </div>
     </Loading>
   );

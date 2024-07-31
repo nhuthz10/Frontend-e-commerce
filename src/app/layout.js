@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import Providers from "@/Providers";
 import { headers } from "next/headers";
 import ZaloChat from "@/components/ZaloChat/ZaloChat";
+import FaceBookChat from "@/components/FacebookChat/FacebookChat";
 import "./global.scss";
 
 const inter = Inter({
