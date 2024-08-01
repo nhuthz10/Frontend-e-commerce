@@ -38,7 +38,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
   }
 
   return {
-    title: res?.data?.name,
+    title: `${res?.data?.name} | Bamito`,
     description: truncateString(res?.data?.descriptionContent, 250),
     openGraph: {
       title: res?.data?.name,

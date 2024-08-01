@@ -3,8 +3,10 @@ export default function robots() {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/user/", "/admin/"],
+      disallow: ["/user/*", "/admin/*"],
     },
-    sitemap: `${process.env.VERCEL_URL ?? 'localhost:3000'}/sitemap.xml`,
+    sitemap: [
+      `${process.env.VERCEL_URL ?? 'localhost:3000'}/sitemap.xml`,
+    ],
   };
 }

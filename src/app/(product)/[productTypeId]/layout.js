@@ -20,7 +20,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
   }
 
   return {
-    title: res?.data?.productTypeName,
+    title: `${res?.data?.productTypeName} | Bamito`,
     description: res?.data?.productTypeName,
     openGraph: {
       title: res?.data?.productTypeName,
