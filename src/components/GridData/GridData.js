@@ -30,6 +30,9 @@ import {
 import { toast } from "react-toastify";
 import * as XLSX from "xlsx";
 import SendIcon from "@mui/icons-material/Send";
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+import { styled } from "@mui/material/styles";
+import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
 
 const currencyFormatter = new Intl.NumberFormat("vi-VN", {
   style: "decimal",
@@ -50,7 +53,7 @@ const GridData = ({
   orderStatus,
   handleDelete,
   getRoleString,
-  handleSendMail
+  subscriberFunction,
 }) => {
   const [PaginationData, setPaginationData] = useState([]);
   const [searchText, setSearchText] = useState("");
@@ -210,6 +213,20 @@ const GridData = ({
       XLSX.writeFile(wb, "Báo cáo doanh thu.xlsx");
     }
   };
+
+  const CustomTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} classes={{ popper: className }} />
+  ))(({ theme }) => ({
+    [`& .${tooltipClasses.tooltip}`]: {
+      fontSize: 20,
+      color: "#1976d2",
+      backgroundColor: "#fff",
+      border: "1px solid grey",
+    },
+    [`& .${tooltipClasses.arrow}`]: {
+      color: "#fff",
+    },
+  }));
 
   return (
     <div className="GridData-Global">
@@ -411,7 +428,22 @@ const GridData = ({
           </div>
         )}
         {gridType === "subscriber" ? (
-          <SendIcon color="primary" sx={{ fontSize: 35 }} onClick={handleSendMail}/>
+          <>
+            <CustomTooltip title="Xuất danh sách email" arrow followCursor>
+              <CloudDownloadOutlinedIcon
+                color="primary"
+                sx={{ fontSize: 35, marginRight: 10 }}
+                onClick={subscriberFunction.handleExportEmail}
+              />
+            </CustomTooltip>
+            <CustomTooltip title="Gửi mail marketing" arrow followCursor>
+              <SendIcon
+                color="primary"
+                sx={{ fontSize: 35 }}
+                onClick={subscriberFunction.handleSendMail}
+              />
+            </CustomTooltip>
+          </>
         ) : null}
       </div>
       <div style={{ minHeight: 550 }}>
