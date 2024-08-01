@@ -23,17 +23,18 @@ const Subscribed = () => {
       });
       const result = await res.json();
       console.log(result);
-      // Create a Blob and trigger a download
-      const blob = new Blob([result], { type: "text/csv;charset=utf-8;" });
-      const link = document.createElement("a");
-      const url = URL.createObjectURL(blob);
-      link.setAttribute("href", url);
-      link.setAttribute("download", "audience.csv");
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      if (result.status != 400) toast.success("Xuất danh sách thành công");
-      else toast.error("Xuất danh sách thất bại");
+      if (result.status != 400) {
+        // Create a Blob and trigger a download
+        const blob = new Blob([result], { type: "text/csv;charset=utf-8;" });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", "audience.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        toast.success("Xuất danh sách thành công");
+      } else toast.error("Xuất danh sách thất bại");
     } catch (err) {
       console.log(err);
       toast.error(err);
