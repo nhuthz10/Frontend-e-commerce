@@ -10,7 +10,6 @@ import {
   logOut,
 } from "../../redux-toolkit/userSlice";
 import Image from "next/image";
-import { handleLoginService } from "../../services/userService";
 import { handleCreatCartService } from "../../services/cartService";
 import { jwtDecode } from "jwt-decode";
 import { toast } from "react-toastify";
@@ -20,15 +19,18 @@ import { useRouter } from "next/navigation";
 import Loading from "../../components/Loading/Loading";
 import { path } from "../../utils";
 import { faCheck, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { handleGetUserAfterLoginService } from "../../services/userService";
+import {
+  handleGetUserAfterLoginService,
+  handleSendSMSOtpService,
+  handleLoginService,
+  handleGetInforUserService
+} from "../../services/userService";
 import "./page.scss";
 import { regex } from "../../utils";
-
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [check, setCheck] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
   const dispatch = useDispatch();
   const router = useRouter();
   const {
@@ -47,12 +49,19 @@ function Login() {
 
   const onSubmit = async (data) => {
     setIsLoading(true);
+
     try {
       let res = await handleLoginService(data.email, data.password);
       if (res && res.errCode === 0) {
         const decoded = jwtDecode(res?.access_token);
-        if (decoded?.id) {
-          let useInfor = await handleGetUserAfterLoginService(decoded?.id);
+        let useInfor = await handleGetUserAfterLoginService(decoded?.id);
+        if (useInfor.user.phoneNumber != null) {
+          await handleSendSMSOtpService(useInfor.user.id);
+          let user = await handleGetInforUserService(useInfor.user.id);
+          localStorage.setItem('otpCode', user.data.otpCode);
+          localStorage.setItem('useInfor', JSON.stringify(useInfor));
+          router.push("/login/otp");
+        } else {
           if (useInfor?.errCode === 0) {
             dispatch(logIn(useInfor?.user));
             dispatch(updateFavourites(useInfor?.favourites));
@@ -64,6 +73,7 @@ function Login() {
             router.push("/");
           }
         }
+
       }
     } catch (err) {
       if (err?.response?.data?.errCode === 4) {
@@ -161,7 +171,6 @@ function Login() {
                   {errors.password && <p>{errors.password.message}</p>}
                 </div>
               </div>
-
               <div className="login-actions">
                 <button
                   type="button"

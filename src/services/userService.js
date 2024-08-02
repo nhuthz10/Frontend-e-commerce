@@ -30,6 +30,15 @@ let handleSendOptService = (email) => {
   );
 };
 
+let handleSendSMSOtpService = (id) => {
+  return axios.post(
+    `/api/user/send-sms?userId=${id}`,
+    {},
+    { withCredentials: true }
+  );
+};
+
+
 let handleChangePasswordService = (data) => {
   return axios.put("/api/user/change-password", data, {
     withCredentials: true,
@@ -102,4 +111,5 @@ export {
   handleDeleteFavourite,
   handleGetAllFavourite,
   handleGetUserAfterLoginService,
+  handleSendSMSOtpService
 };
