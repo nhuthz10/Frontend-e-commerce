@@ -9,45 +9,92 @@
   display: flex;
   justify-content: center;
 
-  .h-product {
-    display: none;
-  }
-
   h2 {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 24px;
-    color: #fff;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 24px;
+      color: #fff;
   }
 
   p {
-    font-size: 15px;
-    margin-bottom: 12px;
-    color: #fff;
+      font-size: 15px;
+      margin-bottom: 12px;
+      color: #fff;
   }
 
-  span {
-    color: #ec3d25;
+span {
+  color: #ec3d25;
+}
+  .col-footer {
+      width: 50rem;
+      margin: 0 5rem;
+      color: #fff;
   }
-    .col-footer {
-        width: 50rem;
-        margin: 0 5rem;
-        color: #fff;
-    }
 
   .policy {
-    p {
-      &:hover {
-        cursor: pointer;
-        color: #ec3d25;
+      p {
+          &:hover {
+              cursor: pointer;
+              color: #EC3D25;
+          }
       }
-    }
   }
 }
 
-.logo-footer {
-  span {
-    font-size: 24px;
-    font-weight: bold;
+@media (max-width:991px) {
+form {
+    padding:40px;
   }
+}
+
+
+form .form-control {
+  background:#f7f9fc;
+  border:none;
+  border-radius: 6px;
+  box-shadow:none;
+  outline:none;
+  color:inherit;
+  text-indent:6px;
+  height:40px;
+  color: #000;
+}
+
+form .form-group {
+  margin-bottom:10px;
+}
+
+form .btn-primary {
+  background: var(--primary-color);
+  border:none;
+  color:#ffffff;
+  border-radius:4px;
+  padding:11px;
+  box-shadow:none;
+  margin-top:10px;
+  text-shadow:none;
+  outline:none !important;
+}
+
+form .btn-primary:hover, form .btn-primary:active {
+  background:#eb3b60;
+}
+
+/* Adjust form groups to ensure proper alignment and spacing */
+.form-group {
+  width: 100%;
+  margin-bottom: 15px;
+  border-radius: 30px;
+  font-size: 1.5rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btn-block {
+  width: 100%;
 }
