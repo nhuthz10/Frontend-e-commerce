@@ -12,10 +12,12 @@ let getAllProductType = async () => {
   }
 };
 
+const URL = "https://e-commerce-xi-sepia.vercel.app";
+
 export default async function sitemap() {
   const productTypes = await getAllProductType();
   const productTypesURL = productTypes.map((product) => ({
-    url: `${process.env.VERCEL_URL}/${convertSlugUrl(
+    url: `${URL}/${convertSlugUrl(
       product.productTypeName
     )}-${product.productTypeId.toLowerCase()}/sitemap.xml`,
     lastModified: new Date(),

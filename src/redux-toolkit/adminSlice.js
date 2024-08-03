@@ -61,11 +61,6 @@ export const fetchAllSubscriber = createAsyncThunk(
         }
       );
       let result = await res.json();
-      // Lọc các thành viên đã đăng ký
-      // const subscribedMembers = result.members.filter(
-      //   (member) => member.status === "subscribed"
-      // );
-      // result.total_items = subscribedMembers.length;
       const totalPage = Math.ceil(result.total_items / LIMIT);
       result = { ...result, totalPage };
 

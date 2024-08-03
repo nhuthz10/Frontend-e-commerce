@@ -93,6 +93,10 @@ function Header() {
     router.push("/sale-off");
   };
 
+  let handleClickFeed = () => {
+    router.push("/feed");
+  };
+
   return (
     <div className="header-container">
       <Link href="/">
@@ -129,6 +133,10 @@ function Header() {
 
       <div onClick={handleClickSaleOff} className="btn-sale-off">
         SALE OFF
+      </div>
+
+      <div onClick={handleClickFeed} className="btn-sale-off">
+        TIN TỨC
       </div>
 
       <Search></Search>

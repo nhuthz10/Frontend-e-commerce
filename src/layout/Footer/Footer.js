@@ -42,7 +42,7 @@ const Footer = () => {
     <Loading loading={isLoading}>
       <div className="footer">
         {/* SEO */}
-        <div className="h-product">
+        <div className="h-product" style={{ display: "none" }}>
           <h1 className="p-name">1</h1>
           <h2 className="p-name">2</h2>
           <h3 className="p-name">3</h3>

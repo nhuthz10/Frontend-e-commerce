@@ -102,6 +102,7 @@ function Breadcrumb() {
       else if (crumb === "orders") crumb = "Lịch sử đơn hàng";
       else if (crumb === "feedback") crumb = "Đánh giá sản phẩm";
       else if (crumb === "favourite") crumb = "Sản phẩm yêu thích";
+      else if (crumb === "feed") crumb = "Tin tức";
     }
     productTypes.forEach((productType) => {
       if (productType.productTypeId === crumb.toUpperCase()) {

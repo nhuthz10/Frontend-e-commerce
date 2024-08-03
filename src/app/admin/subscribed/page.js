@@ -22,7 +22,7 @@ const Subscribed = () => {
         method: "GET",
       });
       const result = await res.json();
-      console.log(result);
+      // console.log(result);
       if (result.status != 400) {
         // Create a Blob and trigger a download
         const blob = new Blob([result], { type: "text/csv;charset=utf-8;" });

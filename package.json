@@ -47,6 +47,7 @@
     "react-toastify": "^9.0.8",
     "redux": "^4.2.1",
     "redux-persist": "^6.0.0",
+    "rss-parser": "^3.13.0",
     "sass": "^1.68.0",
     "sharethis-reactjs": "^1.6.0",
     "slick-carousel": "^1.8.1",

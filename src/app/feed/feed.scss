@@ -1,0 +1,43 @@
+.feed-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .feed-item {
+        display: flex;
+        width: 100rem;
+        margin-bottom: 10rem;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+        &:hover {
+            transform: translateY(-10px);
+        }
+
+        .feed-info {
+            margin-right: 4rem;
+
+            .time {
+                color: grey;
+                margin-bottom: 2rem;
+            }
+
+            .title {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .text {
+                font-size: var(--text-fontSize);
+            }
+        }
+
+        .feed-img {
+
+            img {
+                width: 35rem;
+                border-radius: 2rem;
+            }
+        }
+    }
+}

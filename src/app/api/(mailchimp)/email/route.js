@@ -1,7 +1,7 @@
 
 import mailchimp from "@/config/mailchimp";
-import { NextResponse, NextRequest } from "next/server";
 import CryptoJS from "crypto-js";
+import { NextResponse } from "next/server";
 
 const hashMD5 = (str) => {
   const hashStr = CryptoJS.MD5(str).toString();

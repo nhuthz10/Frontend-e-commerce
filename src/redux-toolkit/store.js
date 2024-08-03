@@ -19,6 +19,7 @@ import adminSlice from "./adminSlice";
 import searchSlice from "./searchSlice";
 import orderSlice from "./orderSlice";
 import cartSlice from "./cartSlice";
+import feedSlice from "./feedSlice";
 
 const createNoopStorage = () => {
   return {
@@ -59,6 +60,7 @@ const store = configureStore({
     product: productSlice,
     search: searchSlice,
     admin: adminSlice,
+    feed: feedSlice
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
