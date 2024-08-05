@@ -10,11 +10,10 @@ import { handleGetProductService } from "@/services/productService";
 import DisplayFeedbacks from "@/components/DisplayFeedbacks/DisplayFeedbacks";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { fetchAllProductCart } from "@/redux-toolkit/cartSlice";
 import Image from "next/image";
 import { logOut } from "@/redux-toolkit/userSlice";
-
+import { InlineShareButtons } from "sharethis-reactjs";
 
 const Line = ({ color }) => (
   <hr
@@ -26,6 +25,12 @@ const Line = ({ color }) => (
     }}
   />
 );
+
+const currencyFormatter = new Intl.NumberFormat("vi-VN", {
+  style: "decimal",
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0,
+});
 
 function ProductDetail({ params }) {
   const [quantity, setQuantity] = useState(1);
@@ -64,12 +69,6 @@ function ProductDetail({ params }) {
     getInfoProdut();
   }, [params.productId]);
 
-  const currencyFormatter = new Intl.NumberFormat("vi-VN", {
-    style: "decimal",
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  });
-
   const handleClickSize = (sizeId) => {
     let data = sizeData.map((size) => {
       size.sizeId === sizeId ? (size.selected = true) : (size.selected = false);
@@ -95,6 +94,7 @@ function ProductDetail({ params }) {
       }
     }
   };
+
   const handleIncrement = () => {
     if (!sizeSelected) {
       toast.error("Vui lòng chọn kích cỡ sản phẩm");
@@ -145,6 +145,13 @@ function ProductDetail({ params }) {
 
   return (
     <div className="product_detail_container">
+      {/*this code below is use for purpose Microformats SEO */}
+      <div className="h-product">
+        <h6 className="p-name"></h6>
+        <img className="u-photo" alt="" />
+        <p className="p-description"></p>
+      </div>
+
       <div className="img_inf_product">
         {product.image && (
           <Image
@@ -234,7 +241,9 @@ function ProductDetail({ params }) {
           <Line color="var(--gray-color)" />
 
           <div className="product_number">
-            <div className="number"><h5>Số lượng</h5></div>
+            <div className="number">
+              <h5>Số lượng</h5>
+            </div>
 
             <div className="quantity-stock">
               <div className="quantity-btn-wrapper">
@@ -262,6 +271,40 @@ function ProductDetail({ params }) {
             <h3>Thêm vào giỏ hàng</h3>
           </button>
         </div>
+      </div>
+
+      <div className="share_this">
+        <InlineShareButtons
+          config={{
+            alignment: "left", // alignment of buttons (left, center, right)
+            color: "social", // set the color of buttons (social, white)
+            enabled: true, // show/hide buttons (true, false)
+            font_size: 16, // font size for the buttons
+            labels: "cta", // button labels (cta, counts, null)
+            language: "en", // which language to use (see LANGUAGES)
+            networks: [
+              // which networks to include (see SHARING NETWORKS)
+              "messenger",
+              "facebook",
+              "twitter",
+            ],
+            padding: 12, // padding within buttons (INTEGER)
+            radius: 4, // the corner radius on each button (INTEGER)
+            // show_total: true,
+            size: 40, // the size of each button (INTEGER)
+
+            // OPTIONAL PARAMETERS
+
+            // min_count: 10,                    // (threshold for total share count to be displayed)
+            // url: 'https://e-commerce-xi-sepia.vercel.app', // (defaults to current url)
+            // image: 'https://bit.ly/2CMhCMC',  // (defaults to og:image or twitter:image)
+            // description: 'custom text',       // (defaults to og:description or twitter:description)
+            // title: 'custom title',            // (defaults to og:title or twitter:title)
+            // message: 'custom email text',     // (only for email sharing)
+            // subject: 'custom email subject',  // (only for email sharing)
+            // username: 'custom twitter handle' // (only for twitter sharing)
+          }}
+        />
       </div>
 
       <div className="description_review_wrapper">

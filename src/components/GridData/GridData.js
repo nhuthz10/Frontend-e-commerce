@@ -28,8 +28,11 @@ import {
   UpdateDataPost,
 } from "../../redux-toolkit/adminSlice";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import * as XLSX from "xlsx";
+import SendIcon from "@mui/icons-material/Send";
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+import { styled } from "@mui/material/styles";
+import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
 
 const currencyFormatter = new Intl.NumberFormat("vi-VN", {
   style: "decimal",
@@ -50,9 +53,13 @@ const GridData = ({
   orderStatus,
   handleDelete,
   getRoleString,
+  subscriberFunction,
 }) => {
   const [PaginationData, setPaginationData] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const subscriberData = useSelector(
+    (state) => state.admin.allSubscriber?.members
+  );
   const userData = useSelector((state) => state.admin.allUser?.data);
   const rolesData = useSelector((state) => state.admin.allRole);
   const brandData = useSelector((state) => state.admin.allBrand?.data);
@@ -118,6 +125,8 @@ const GridData = ({
       setPaginationData(orderData);
     } else if (gridType === "report-admin") {
       setPaginationData(productOrderData);
+    } else if (gridType === "subscriber") {
+      setPaginationData(subscriberData);
     }
   }, [
     brandData,
@@ -130,6 +139,7 @@ const GridData = ({
     userData,
     voucherData,
     productOrderData,
+    subscriberData,
   ]);
 
   useEffect(() => {
@@ -203,6 +213,20 @@ const GridData = ({
       XLSX.writeFile(wb, "Báo cáo doanh thu.xlsx");
     }
   };
+
+  const CustomTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} classes={{ popper: className }} />
+  ))(({ theme }) => ({
+    [`& .${tooltipClasses.tooltip}`]: {
+      fontSize: 20,
+      color: "#1976d2",
+      backgroundColor: "#fff",
+      border: "1px solid grey",
+    },
+    [`& .${tooltipClasses.arrow}`]: {
+      color: "#fff",
+    },
+  }));
 
   return (
     <div className="GridData-Global">
@@ -383,7 +407,9 @@ const GridData = ({
           </form>
         ) : null}
 
-        {gridType === "order-admin" || gridType === "report-admin" ? null : (
+        {gridType === "order-admin" ||
+        gridType === "report-admin" ||
+        gridType === "subscriber" ? null : (
           <div
             onClick={() => {
               dispatch(
@@ -401,6 +427,24 @@ const GridData = ({
             <FontAwesomeIcon icon={faSquarePlus} size="4x" color="#022E6C" />
           </div>
         )}
+        {gridType === "subscriber" ? (
+          <>
+            <CustomTooltip title="Xuất danh sách email" arrow followCursor>
+              <CloudDownloadOutlinedIcon
+                color="primary"
+                sx={{ fontSize: 35, marginRight: 10 }}
+                onClick={subscriberFunction.handleExportEmail}
+              />
+            </CustomTooltip>
+            <CustomTooltip title="Gửi mail marketing" arrow followCursor>
+              <SendIcon
+                color="primary"
+                sx={{ fontSize: 35 }}
+                onClick={subscriberFunction.handleSendMail}
+              />
+            </CustomTooltip>
+          </>
+        ) : null}
       </div>
       <div style={{ minHeight: 550 }}>
         <table>
@@ -575,35 +619,40 @@ const GridData = ({
                             Size
                           </div>
                         )}
-                        <div
-                          onClick={() => {
-                            dispatch(
-                              UpdateDataPost({
-                                data: item,
-                                rolesData,
-                                productTypeData,
-                                brandData,
-                              })
-                            );
-                            gridType === "productSize"
-                              ? router.push(
-                                  `/admin/product/${path[path.length - 1]}/edit`
-                                )
-                              : router.push(
-                                  `/admin/${path[path.length - 1]}/edit`
-                                );
-                          }}
-                          style={{
-                            width: "26px",
-                            height: "40px",
-                          }}
-                        >
-                          <FontAwesomeIcon
-                            icon={faPencil}
-                            style={{ height: "100%", width: "100%" }}
-                            color="#1976d2"
-                          />
-                        </div>
+                        {gridType === "subscriber" ? null : (
+                          <div
+                            onClick={() => {
+                              dispatch(
+                                UpdateDataPost({
+                                  data: item,
+                                  rolesData,
+                                  productTypeData,
+                                  brandData,
+                                })
+                              );
+                              gridType === "productSize"
+                                ? router.push(
+                                    `/admin/product/${
+                                      path[path.length - 1]
+                                    }/edit`
+                                  )
+                                : router.push(
+                                    `/admin/${path[path.length - 1]}/edit`
+                                  );
+                            }}
+                            style={{
+                              width: "26px",
+                              height: "40px",
+                            }}
+                          >
+                            <FontAwesomeIcon
+                              icon={faPencil}
+                              style={{ height: "100%", width: "100%" }}
+                              color="#1976d2"
+                            />
+                          </div>
+                        )}
+
                         <ModalDelete
                           handleDelete={() =>
                             handleDelete(item, PaginationData?.length === 1)

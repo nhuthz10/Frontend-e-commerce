@@ -14,7 +14,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import { Grid } from "@mui/material";
 import "./page.scss";
@@ -96,9 +95,9 @@ const SaleOff = () => {
                 <Link
                   href={`/${convertSlugUrl(
                     item.productTypeData?.productTypeName
-                  )}-${item.productTypeData?.productTypeId}/${convertSlugUrl(
+                  )}-${item.productTypeData?.productTypeId.toLowerCase()}/${convertSlugUrl(
                     item.name
-                  )}-${item.productId}`}
+                  )}-${item.productId.toLowerCase()}`}
                   className="productWrapper"
                 >
                   <Image

@@ -15,7 +15,6 @@ import { searchPopular } from "../../utils";
 import "./Search.scss";
 import { useDebounce } from "../../utils/commonUtils";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import { handleChangSearchText } from "../../redux-toolkit/searchSlice";
 import { handleChangePage } from "../../redux-toolkit/paginationSlice";
@@ -153,8 +152,8 @@ const Search = () => {
                       href={`/${convertSlugUrl(
                         item.productTypeData?.productTypeName
                       )}-${
-                        item.productTypeData?.productTypeId
-                      }/${convertSlugUrl(item.name)}-${item.productId}`}
+                        item.productTypeData?.productTypeId.toLowerCase()
+                      }/${convertSlugUrl(item.name)}-${item.productId.toLowerCase()}`}
                       key={index}
                       className="searchProduct"
                       onClick={() => {

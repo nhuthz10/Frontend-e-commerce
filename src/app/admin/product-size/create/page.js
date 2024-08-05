@@ -5,7 +5,6 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { useForm, Controller } from "react-hook-form";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import {
   handleUpdateSizeService,
   handleCreateSizeService,

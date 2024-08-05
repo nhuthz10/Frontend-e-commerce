@@ -5,7 +5,6 @@ import RattingForm from "@/components/RatingForm/RatingForm";
 import { useSelector } from "react-redux";
 import { handleGetAllProductFeedback } from "@/services/productService";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import "./page.scss";
 import { logOut } from "@/redux-toolkit/userSlice";
 
@@ -60,7 +59,7 @@ const FeedBack = () => {
                 src={product.image}
                 width={150}
                 height={150}
-                alt=""
+                alt="badminton"
                 className="feedback-product-img"
               ></Image>
               <div className="feedback-product-content">

@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { Button, TextField } from "@mui/material";
 import { usePathname, useRouter } from "next/navigation";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
@@ -209,7 +208,7 @@ function VoucherPost() {
         >
           <Image
             src={imageValue}
-            alt=""
+            alt="badminton"
             height={250}
             width={200}
             style={{
