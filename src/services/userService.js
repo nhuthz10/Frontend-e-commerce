@@ -117,6 +117,6 @@ export {
   handleDeleteFavourite,
   handleGetAllFavourite,
   handleGetUserAfterLoginService,
-  handleSendSMSOtpService
+  handleSendSMSOtpService,
   handleCheckEmailExisted
 };

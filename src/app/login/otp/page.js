@@ -21,13 +21,11 @@ const OtpSmsPage = () => {
     const router = useRouter();
     const dispatch = useDispatch();
 
-
     useEffect(() => {
         if (otp.join("").length === 6) {
             validateOtp();
         }
     }, [otp]);
-
 
     const handleChange = (element, index) => {
         const value = element.value;
@@ -69,7 +67,6 @@ const OtpSmsPage = () => {
             router.push("/");
         } else {
             toast.error("Mã xác thực không đúng");
-            localStorage.setItem()
         }
     };
 

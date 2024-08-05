@@ -48,7 +48,6 @@ function Login() {
 
   const onSubmit = async (data) => {
     setIsLoading(true);
-
     try {
       let res = await handleLoginService(data.email, data.password);
       if (res && res.errCode === 0) {
