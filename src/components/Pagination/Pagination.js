@@ -236,7 +236,9 @@ function PaginatedItems({ type, productTypeId, orderStatus }) {
         };
         getAllFetch();
       } else {
+        dispatch(loadingProduct(true));
         dispatch(handlePaginateFeed({ page: pageCount }));
+        dispatch(loadingProduct(false));
       }
     } else if (type === "search-product") {
       let getAllDataSearch = async () => {
