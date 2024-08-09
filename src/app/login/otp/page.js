@@ -13,6 +13,7 @@ import {
     logOut,
 } from "../../../redux-toolkit/userSlice";
 import { handleCreatCartService } from "../../../services/cartService";
+import Image from "next/image";
 const OtpSmsPage = () => {
     const [otp, setOtp] = useState(new Array(6).fill(""));
     const otpCode = localStorage.getItem('otpCode');
@@ -69,30 +70,37 @@ const OtpSmsPage = () => {
             router.push("/");
         } else {
             toast.error("Mã xác thực không đúng");
-            localStorage.setItem()
         }
     };
 
     return (
-        <div className="otpInputContainer">
-            <FontAwesomeIcon className="otpInput-Icon" icon={faShield} size="10x" />
-            <h1 className="otpInput-Header">
-                VUI LÒNG NHẬP MÃ OTP 👋
-            </h1>
-            <div>
-                {otp.map((data, index) => (
-                    <input
-                        className="otpInput"
-                        type="text"
-                        name="otp"
-                        maxLength="1"
-                        key={index}
-                        value={data}
-                        onChange={e => handleChange(e.target, index)}
-                        onKeyDown={e => handleKeyDown(e, index)}
-                        onFocus={e => e.target.select()}
-                    />
-                ))}
+        <div className="otpInput-Body">
+            <div className="otpInputContainer">
+                <Image
+                    src="/images/shield-ok-icon.png"
+                    width={200}
+                    height={200}
+                    alt="img"
+                    className="otpInput-Icon"
+                />
+                <h1 className="otpInput-Header">
+                    VUI LÒNG NHẬP MÃ OTP 👋
+                </h1>
+                <div>
+                    {otp.map((data, index) => (
+                        <input
+                            className="otpInput"
+                            type="text"
+                            name="otp"
+                            maxLength="1"
+                            key={index}
+                            value={data}
+                            onChange={e => handleChange(e.target, index)}
+                            onKeyDown={e => handleKeyDown(e, index)}
+                            onFocus={e => e.target.select()}
+                        />
+                    ))}
+                </div>
             </div>
         </div>
     );
