@@ -54,7 +54,20 @@ export default function RootLayout({ children }) {
             __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TB2BPBVJ" height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
           }}
         />
-        <GoogleAnalytics gaId="G-25SHY31GSE" />
+        {/* <GoogleAnalytics gaId="G-25SHY31GSE" /> */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-25SHY31GSE"
+          strategy="afterInteractive"
+        />
+        {/* Script khởi tạo Google Analytics */}
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-25SHY31GSE');
+          `}
+        </Script>
         <Providers>{children}</Providers>
         <ZaloChat />
       </body>
