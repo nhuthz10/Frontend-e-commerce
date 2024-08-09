@@ -16,6 +16,7 @@ import {
   fetchAllVoucherRedux,
   fetchAllOrderAdminRedux,
   fetchAllProductOrderRedux,
+  fetchAllSubscriber,
 } from "../../redux-toolkit/adminSlice";
 import {
   fetchAllProductOfTheProductTypeRedux,
@@ -29,17 +30,30 @@ import { loadingAdmin } from "../../redux-toolkit/adminSlice";
 import { LIMIT, LIMIT_PRODUCT, LIMIT_SEARCH, LIMIT_ORDER } from "../../utils";
 import { handleChangePage } from "../../redux-toolkit/paginationSlice";
 import "./Pagination.scss";
+import {
+  fetchAllFeed,
+  handlePaginateFeed,
+  handleSetTotalPage,
+} from "@/redux-toolkit/feedSlice";
 
 function PaginatedItems({ type, productTypeId, orderStatus }) {
   const dispatch = useDispatch();
   const [totalPage, setTotalPage] = useState(1);
+  console.log("totalPage", totalPage);
   const currentPage = useSelector((state) => state.pagination.page);
+  const feedData = useSelector((state) => state.feed.feed);
+  const totalFeedPage = useSelector((state) => state.feed.totalPage);
+  console.log("totalFeedPage", totalFeedPage);
+  const totalSubscriberPage = useSelector(
+    (state) => state.admin.allSubscriber?.totalPage
+  );
   const totalPageUser = useSelector((state) => state.admin.allUser.totalPage);
   const totalPageBrand = useSelector((state) => state.admin.allBrand.totalPage);
   const totalPageProductType = useSelector(
     (state) => state.admin.allProductType.totalPage
   );
   const pageCount = useSelector((state) => state.pagination.page);
+
   const totalPageSize = useSelector((state) => state.admin.allSize.totalPage);
   const totalProduct = useSelector((state) => state.admin.allProduct.totalPage);
   const totalProductSize = useSelector(
@@ -104,6 +118,13 @@ function PaginatedItems({ type, productTypeId, orderStatus }) {
         dispatch(loadingAdmin(false));
       };
       getAllDataUser();
+    } else if (type === "subscriber") {
+      let getAllDataSubscriber = async () => {
+        dispatch(loadingAdmin(true));
+        await dispatch(fetchAllSubscriber({ limit: LIMIT, page: pageCount }));
+        dispatch(loadingAdmin(false));
+      };
+      getAllDataSubscriber();
     } else if (type === "product-brand") {
       let getAllDataBrand = async () => {
         dispatch(loadingAdmin(true));
@@ -205,6 +226,20 @@ function PaginatedItems({ type, productTypeId, orderStatus }) {
         dispatch(loadingProduct(false));
       };
       getAllDataProduct();
+    } else if (type === "feed") {
+      if (totalFeedPage === null) {
+        let getAllFetch = async () => {
+          dispatch(loadingProduct(true));
+          await dispatch(fetchAllFeed());
+          await dispatch(handleSetTotalPage());
+          dispatch(loadingProduct(false));
+        };
+        getAllFetch();
+      } else {
+        dispatch(loadingProduct(true));
+        dispatch(handlePaginateFeed({ page: pageCount }));
+        dispatch(loadingProduct(false));
+      }
     } else if (type === "search-product") {
       let getAllDataSearch = async () => {
         dispatch(loadingProduct(true));
@@ -314,6 +349,7 @@ function PaginatedItems({ type, productTypeId, orderStatus }) {
     userId,
     searchProductAdmin,
     timeReport,
+    totalFeedPage,
   ]);
 
   useEffect(() => {
@@ -345,6 +381,11 @@ function PaginatedItems({ type, productTypeId, orderStatus }) {
       setTotalPage(totalProductOrder);
     } else if (type === "favourite-product") {
       setTotalPage(totalProductFavourite);
+    } else if (type === "subscriber " || totalSubscriberPage !== null) {
+      setTotalPage(totalSubscriberPage);
+    }
+    if (type === "feed") {
+      setTotalPage(totalFeedPage);
     }
   }, [
     totalOrder,
@@ -361,6 +402,8 @@ function PaginatedItems({ type, productTypeId, orderStatus }) {
     totalProductSize,
     totalVoucher,
     totalProductSaleOff,
+    totalSubscriberPage,
+    totalFeedPage,
     type,
   ]);
 

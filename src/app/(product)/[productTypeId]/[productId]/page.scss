@@ -86,8 +86,12 @@
 
       .product_number {
         .number {
-          font-size: var(--text-fontSize);
           margin-bottom: 1rem;
+
+          h5 {
+            font-weight: normal;
+            font-size: var(--text-fontSize);
+          }
         }
 
         .quantity-stock {
@@ -160,8 +164,11 @@
     }
   }
 
+  .share_this {
+    margin: 2rem 7rem;
+  }
+
   .description_review_wrapper {
-    margin-top: 5rem;
 
     .des-review-btn-wrapper {
       display: flex;
@@ -184,15 +191,18 @@
 
     .description {
       font-size: 2.2rem;
+
       h1,
       h2,
       h3 {
         margin: 16px 0;
       }
+
       p {
         margin: 9px 0;
         line-height: 2.2;
       }
+
       ul {
         padding-left: 26px;
 
@@ -201,6 +211,7 @@
           line-height: 2.2;
         }
       }
+
       img {
         margin: auto;
       }

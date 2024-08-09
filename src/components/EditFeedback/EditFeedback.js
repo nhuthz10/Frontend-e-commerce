@@ -4,7 +4,6 @@ import "./EditFeedback.scss";
 import { handleUpdateFeedbackService } from "../../services/productService";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import Modal from "@mui/material/Modal";
 import { logOut } from "@/redux-toolkit/userSlice";
 

@@ -5,7 +5,6 @@ import { useForm, Controller } from "react-hook-form";
 import MenuItem from "@mui/material/MenuItem";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { usePathname, useRouter } from "next/navigation";
 import { loadingAdmin } from "@/redux-toolkit/adminSlice";
 import { useDispatch, useSelector } from "react-redux";

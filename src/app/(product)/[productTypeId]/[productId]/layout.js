@@ -2,25 +2,35 @@ import { handleGetProductService } from "@/services/productService";
 import { headers } from "next/headers";
 
 function truncateString(str, num) {
-  if (str.length <= num) {
+  if (str?.length <= num) {
     return str;
   }
-  return str.slice(0, num) + "...";
+  return str?.slice(0, num) + "...";
 }
+
+//product response
+var res;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: res?.data?.name,
+  image: res?.data?.image,
+  description: res?.data?.name,
+};
 
 export async function generateMetadata({ params, searchParams }, parent) {
   // read route params
-  const temp = params?.productId?.split(".html") ?? [];
-  const temp1 = temp[0]?.split("-") ?? [];
-  const id = temp1[temp1.length - 1];
+  const temp = params?.productId?.split("-") ?? [];
+  const id = temp[temp.length - 1];
 
   const headersList = headers();
   const domain = headersList.get("host") || "";
 
-  const header_url = headersList.get('x-url') || "";
+  const header_url = headersList.get("x-url") || "";
 
   // fetch data
-  let res;
+  // let res;
   try {
     res = await handleGetProductService(id);
   } catch (error) {
@@ -28,7 +38,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
   }
 
   return {
-    title: res?.data?.name,
+    title: `${res?.data?.name} | Bamito`,
     description: truncateString(res?.data?.descriptionContent, 250),
     openGraph: {
       title: res?.data?.name,
@@ -40,10 +50,20 @@ export async function generateMetadata({ params, searchParams }, parent) {
           url: res?.data?.image,
         },
       ],
+      type: "website",
+      locale: "vn",
     },
   };
 }
 
 export default function ProductTypeLayout({ children }) {
-  return <>{children}</>;
+  return (
+    <>
+      {children}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+    </>
+  );
 }

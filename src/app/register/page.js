@@ -7,7 +7,6 @@ import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { handleRegisterService } from "../../services/userService";
 import { useRouter } from "next/navigation";
 import { regex } from "../../utils";

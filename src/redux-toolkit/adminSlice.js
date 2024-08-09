@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {
   handleGetAllUserService,
   handleGetAllRoleService,
+  handleCheckEmailExisted,
 } from "../services/userService";
 import dayjs from "dayjs";
 import {
@@ -18,11 +19,12 @@ import {
   handleGetAllProductReport,
 } from "../services/orderService";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { logOut } from "./userSlice";
+import { LIMIT } from "@/utils";
 
 const initialState = {
   isLoading: false,
+  allSubscriber: [],
   allUser: [],
   allRole: [],
   allBrand: [],
@@ -43,6 +45,56 @@ const initialState = {
   },
 };
 
+export const fetchAllSubscriber = createAsyncThunk(
+  "admin/fetchAllSubscriber",
+  async (params, thunkAPI) => {
+    try {
+      const res = await fetch(
+        `/api/email?offset=${(params.page - 1) * params.limit}&count=${
+          params.limit
+        }`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      let result = await res.json();
+      const totalPage = Math.ceil(result.total_items / LIMIT);
+      result = { ...result, totalPage };
+
+      const members = await Promise.all(
+        result.members.map(async (member) => {
+          const res = await handleCheckEmailExisted(member.email_address);
+          const checkEmailExisted = res?.errCode === 0;
+          return {
+            ...member,
+            bamito_status: checkEmailExisted ? "Khách hàng" : "Ẩn danh",
+          };
+        })
+      );
+      // Cập nhật lại result với thông tin members đã xử lý
+      result.members = members;
+      console.log(result);
+      if (result && result.total_items > 0) {
+        thunkAPI.dispatch(fetchAllSubscriberSuccess(result));
+      } else {
+        thunkAPI.dispatch(fetchAllSubscriberFailed());
+      }
+    } catch (error) {
+      console.log(error);
+      thunkAPI.dispatch(fetchAllSubscriberFailed());
+      // if (error?.response?.data?.errCode === -4) {
+      //   toast.error("Phiên bản đăng nhập hết hạn");
+      //   thunkAPI.dispatch(logOut());
+      // } else {
+      //   toast.error(error?.response?.data?.message);
+      // }
+    }
+  }
+);
+
 export const fetchAllUserRedux = createAsyncThunk(
   "admin/fetchAllUserRedux",
   async (params, thunkAPI) => {
@@ -52,6 +104,7 @@ export const fetchAllUserRedux = createAsyncThunk(
         params?.page,
         params?.name
       );
+      console.log(res);
       if (res && res.errCode === 0) {
         thunkAPI.dispatch(fetchAllUserSuccess(res));
       } else {
@@ -344,6 +397,12 @@ export const adminSlice = createSlice({
     loadingAdmin: (state, action) => {
       state.isLoading = action.payload;
     },
+    fetchAllSubscriberSuccess: (state, action) => {
+      state.allSubscriber = action.payload;
+    },
+    fetchAllSubscriberFailed: (state, action) => {
+      state.allSubscriber = [];
+    },
     fetchAllUserSuccess: (state, action) => {
       state.allUser = action.payload;
     },
@@ -454,6 +513,8 @@ export const {
   fetchAllProductOrderSuccess,
   fetchAllProductOrderFailed,
   handleChangeTimeReport,
+  fetchAllSubscriberSuccess,
+  fetchAllSubscriberFailed,
 } = adminSlice.actions;
 
 export default adminSlice.reducer;

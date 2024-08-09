@@ -14,7 +14,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import "./Header.scss";
 import { logOut } from "../../redux-toolkit/userSlice";
 import { handleGetAllProductTypeService } from "../../services/productService";
@@ -45,7 +44,9 @@ const ProductTypesMenu = () => {
 
   const handleChangProductType = (productTypeId, productTypeName) => {
     dispatch(handleChangePage(1));
-    router.push(`/${convertSlugUrl(productTypeName)}-${productTypeId}`);
+    router.push(
+      `/${convertSlugUrl(productTypeName)}-${productTypeId.toLowerCase()}`
+    );
     // router.push(`/product/${productTypeId}`);
   };
 
@@ -56,9 +57,11 @@ const ProductTypesMenu = () => {
           <div
             key={index}
             className="product-type-wrapper"
-            onClick={() => handleChangProductType(item.productTypeId, item.productTypeName)}
+            onClick={() =>
+              handleChangProductType(item.productTypeId, item.productTypeName)
+            }
           >
-            <p>{item.productTypeName}</p>
+            <h1>{item.productTypeName}</h1>
           </div>
         );
       })}
@@ -88,6 +91,10 @@ function Header() {
   let handleClickSaleOff = () => {
     dispatch(handleChangePage(1));
     router.push("/sale-off");
+  };
+
+  let handleClickFeed = () => {
+    router.push("/feed");
   };
 
   return (
@@ -126,6 +133,10 @@ function Header() {
 
       <div onClick={handleClickSaleOff} className="btn-sale-off">
         SALE OFF
+      </div>
+
+      <div onClick={handleClickFeed} className="btn-sale-off">
+        TIN TỨC
       </div>
 
       <Search></Search>

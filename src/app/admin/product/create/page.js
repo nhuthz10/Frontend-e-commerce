@@ -10,7 +10,6 @@ import "react-markdown-editor-lite/lib/index.css";
 import { styled } from "@mui/material/styles";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { usePathname, useRouter } from "next/navigation";
 import { loadingAdmin } from "@/redux-toolkit/adminSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -254,7 +253,7 @@ const ProductPost = () => {
         >
           <Image
             src={imageValue}
-            alt=""
+            alt="badminton"
             height={250}
             width={200}
             style={{

@@ -14,7 +14,6 @@ const currencyFormatter = new Intl.NumberFormat("vi-VN", {
   maximumFractionDigits: 0,
 });
 
-
 const getProductTypeName = async (id) => {
   const res = await handleGetProductTypeService(id);
   if (res && res?.errCode === 0) {
@@ -36,7 +35,9 @@ const TippyCart = () => {
       await dispatch(fetchAllProductCart({ userId: userId }));
       const productsWithNames = await Promise.all(
         products.map(async (product) => {
-          const productTypeName = await getProductTypeName(product.productTypeId);
+          const productTypeName = await getProductTypeName(
+            product.productTypeId
+          );
           return { ...product, productTypeName: productTypeName };
         })
       );
@@ -55,14 +56,16 @@ const TippyCart = () => {
             <Link
               className="product-item"
               key={index}
-              href={`/${convertSlugUrl(product.productTypeName)}-${
-                product.productTypeId
-              }/${convertSlugUrl(product.name)}-${product.productId}`}
+              href={`/${convertSlugUrl(
+                product.productTypeName
+              )}-${product.productTypeId.toLowerCase()}/${convertSlugUrl(
+                product.name
+              )}-${product.productId.toLowerCase()}`}
             >
               <div className="product-wrap-img-name">
                 <Image
                   src={product.image}
-                  alt=""
+                  alt="badminton"
                   width={54}
                   height={54}
                   className="product-img"

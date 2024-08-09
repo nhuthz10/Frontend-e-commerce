@@ -6,7 +6,6 @@ import "./RattingForm.scss";
 import { handleCreateFeedbackService } from "../../services/productService";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { logOut } from "@/redux-toolkit/userSlice";
 
 const style = {

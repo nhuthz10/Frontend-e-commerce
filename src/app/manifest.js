@@ -1,7 +1,9 @@
+
+
 export default function manifest() {
   return {
-    name: "Tiki Lite",
-    short_name: "Tiki Lite",
+    name: "BAMITO Lite",
+    short_name: "BAMITO Lite",
     description:
       "Tiện lợi mua sắm hàng triệu mặt hàng, dịch vụ. Vô vàn ưu đãi freeship, mã giảm giá. Hoàn tiền 15% tối đa 600k/tháng với thẻ tín dụng TikiCARD.",
     icons: [

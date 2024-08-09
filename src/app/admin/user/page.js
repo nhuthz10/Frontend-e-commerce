@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { handleDeleteService } from "@/services/userService";
 import {
   fetchAllRoleRedux,

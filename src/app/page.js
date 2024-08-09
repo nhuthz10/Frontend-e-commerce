@@ -7,8 +7,16 @@ import UserLayout from "@/layout/userLayout/UserLayout";
 import "./page.scss";
 
 function Home() {
+  const ld = {
+    "@context": "https://schema.org",
+    "@type": "Home",
+    name: "Shop Badminton",
+    image: "https://example.com/photos/yonex-racket.jpg",
+    description: "Trang Chủ - Cửa Hàng Đồ Cầu Lông Chính Hãng",
+  };
   return (
     <UserLayout>
+      <script type="application/ld+json">{JSON.stringify(ld)}</script>
       <div className="home-container">
         <Banner></Banner>
         <div className="home-content">
@@ -22,7 +30,7 @@ function Home() {
                       src="/images/policy_image_2 1.png"
                       width={60}
                       height={60}
-                      alt=""
+                      alt="badminton"
                       className="home-benefit-item-img"
                     ></Image>
                     <div className="home-benefit-item-text">
@@ -38,7 +46,7 @@ function Home() {
                       src="/images/thanh_toan 1.png"
                       height={60}
                       width={60}
-                      alt=""
+                      alt="badminton"
                       className="home-benefit-item-img"
                     ></Image>
                     <div className="home-benefit-item-text">
@@ -52,7 +60,7 @@ function Home() {
                   <div className="home-benefit-item">
                     <Image
                       src="/images/policy_image_1 1.png"
-                      alt=""
+                      alt="badminton"
                       height={60}
                       width={60}
                       className="home-benefit-item-img"

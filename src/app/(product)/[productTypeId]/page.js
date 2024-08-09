@@ -25,7 +25,6 @@ import {
 import Image from "next/image";
 import { sortBy } from "@/utils/index";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { logOut, updateFavourites } from "@/redux-toolkit/userSlice";
 import { handleChangePage } from "@/redux-toolkit/paginationSlice";
 import { convertSlugUrl } from "@/utils/commonUtils";
@@ -235,9 +234,9 @@ const Product = ({ params }) => {
                     <Link
                       href={`/${convertSlugUrl(
                         item.productTypeData.productTypeName
-                      )}-${item.productTypeData.productTypeId}/${convertSlugUrl(
+                      )}-${item.productTypeData.productTypeId.toLowerCase()}/${convertSlugUrl(
                         item.name
-                      )}-${item.productId}`}
+                      )}-${item.productId.toLowerCase()}`}
                       className="product-item"
                     >
                       <Image
