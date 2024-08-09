@@ -54,7 +54,7 @@ export default function RootLayout({ children }) {
             __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TB2BPBVJ" height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
           }}
         />
-        <GoogleAnalytics gaId="G-XYZ" />
+        <GoogleAnalytics gaId="G-25SHY31GSE" />
         <Providers>{children}</Providers>
         <ZaloChat />
       </body>
