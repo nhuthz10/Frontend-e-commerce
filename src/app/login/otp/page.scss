@@ -1,48 +1,49 @@
 .otpInput-Body {
-    display: flex;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    background-color: whitesmoke;
-    justify-content: center;
-}
-
-.otpInputContainer {
-    display: flex;
-    align-items: center;
-    height: 700px;
-    width: 1000px;
-    background-color: rgb(13, 209, 62);
-    flex-direction: column;
-    border-radius: 5%;
-    box-shadow: 10px 20px 20px rgba(0, 0, 0, 0.5);
-}
-
-.otpInput-Icon {
-    margin-top: 100px;
-}
-
-.otpInput-Header {
-    margin-top: 50px;
-    margin-bottom: 70px;
-    font-size: 30px;
-    color: white;
-}
-
-.otpInput {
-    width: 60px;
-    height: 60px;
-    margin: 0 5px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 25px;
-    border: 1px solid rgb(13, 209, 62);
-    border-radius: 5px;
-    background-color: white;
-    outline: none;
-
-    &:focus {
-        border-color: #0070f3;
-        box-shadow: 0 0 5px rgba(0, 112, 243, 0.5);
+    .otpInput-Body {
+        display: flex;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+        background-color: whitesmoke;
+        justify-content: center;
     }
-}
+
+    .otpInputContainer {
+        display: flex;
+        align-items: center;
+        height: 700px;
+        width: 1000px;
+        background-color: rgb(13, 209, 62);
+        flex-direction: column;
+        border-radius: 5%;
+        box-shadow: 10px 20px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .otpInput-Icon {
+        margin-top: 100px;
+    }
+
+    .otpInput-Header {
+        margin-top: 50px;
+        margin-bottom: 70px;
+        font-size: 30px;
+        color: white;
+    }
+
+    .otpInput {
+        width: 60px;
+        height: 60px;
+        margin: 0 5px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 25px;
+        border: 1px solid rgb(13, 209, 62);
+        border-radius: 5px;
+        background-color: white;
+        outline: none;
+
+        &:focus {
+            border-color: #0070f3;
+            box-shadow: 0 0 5px rgba(0, 112, 243, 0.5);
+        }
+    }
